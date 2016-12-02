@@ -2,6 +2,8 @@
 var readline = require('readline'),
     rl = readline.createInterface(process.stdin, process.stdout);
 
+var tk = require("./src/tokenizer.js");
+
 rl.setPrompt('Royal> ');
 rl.prompt();
 
@@ -13,7 +15,7 @@ rl.on('line', function(line) {
         case 'close':
             process.exit(0);
         default:
-            console.log(isBalanced(line));
+            console.log(tk.Tokenize(line));
             break;
     }
     rl.prompt();
