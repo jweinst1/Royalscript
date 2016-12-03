@@ -26,15 +26,15 @@ var primTable = {
 	"2":true
 };
 
-//determines
+//determines if string is a primitive value
 function isPrim(string){
 	return /\"[^"]*\"|[0-9]+/.test(string)
 }
 
 //creates an abstract node for the AST
-function AbsNode(sym, children){
+function AbsNode(sym){
 	return {sym:sym,
-		    children:children,
+		    children:[],
 		    fn:FuncTable[sym],
 		    call:function(){ return this.fn(this.children) }
 	};
@@ -48,16 +48,32 @@ function ValNode(value){
 	};
 }
 
+//parenthesis counter object to facilitate top down parsing.
+function ParenCounter(){
+	this["("] = 0;
+	this[")"] = 0;
+    this.put = function(token){
+    	if(token in this) this[token] += 1;
+    	return this["("] === this[")"];
+    };
+}
+
 //main level parser function
 var Parse = function(tokens){
 	var start = null;
 	var end = null;
-	var mode = "start";
+	var fnmode = true;
+	var smode = false;
+	var emod = false;
+	var cursym = null;
+	var ast = {sym:"program", children:[]};
+	var counter = new ParenCounter();
 	for (var i = 0; i < tokens.length; i++) {
 		//not finished
-		switch (mode) {
-			case "start": 
-			break;
+		if (fnmode){
+			if(tokens[i] in funcTable){
+				cursym = tokens[i];
+			}
 		}
 	};
 };
