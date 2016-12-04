@@ -10,7 +10,6 @@ rl.prompt();
 rl.on('line', function(line) {
     switch(line.trim()) {
         case 'hello':
-            throw "hello";
             break;
         case 'close':
             process.exit(0);

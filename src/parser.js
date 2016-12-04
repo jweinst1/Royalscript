@@ -60,19 +60,32 @@ function ParenCounter(){
 
 //main level parser function
 var Parse = function(tokens){
-	var start = null;
-	var end = null;
 	var fnmode = true;
 	var smode = false;
-	var emod = false;
-	var cursym = null;
+	var emode = false;
+	var curnode = null;
 	var ast = {sym:"program", children:[]};
 	var counter = new ParenCounter();
 	for (var i = 0; i < tokens.length; i++) {
 		//not finished
 		if (fnmode){
 			if(tokens[i] in funcTable){
-				cursym = tokens[i];
+				//finds a function token
+				cursym = AbsNode(tokens[i]);
+				smode = true;
+				fnmode = false;
+			}
+		}
+		else if (smode){
+			if (tokens[i] === "("){
+				counter.put(tokens[i]);
+				smode = false;
+				emode = true;
+			}
+		}
+		else if(emode){
+			if(tokens[i] === ")"){
+				
 			}
 		}
 	};
