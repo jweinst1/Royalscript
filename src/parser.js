@@ -26,10 +26,6 @@ var primTable = {
 	"2":true
 };
 
-//determines if string is a primitive value
-function isPrim(string){
-	return /\"[^"]*\"|[0-9]+/.test(string)
-}
 
 //creates an abstract node for the AST
 function AbsNode(sym){
@@ -71,7 +67,7 @@ var Parse = function(tokens){
 		if (fnmode){
 			if(tokens[i] in funcTable){
 				//finds a function token
-				cursym = AbsNode(tokens[i]);
+				curnode = AbsNode(tokens[i]);
 				smode = true;
 				fnmode = false;
 			}
@@ -85,8 +81,67 @@ var Parse = function(tokens){
 		}
 		else if(emode){
 			if(tokens[i] === ")"){
-				
+
+			}
+			else {
+
 			}
 		}
 	};
 };
+
+var AST = (function(){
+	//determines if string is a primitive value
+	function isPrim(string){
+		return /^"[^"]*"$|^[0-9]+$|true|false|null/.test(string);
+	}
+
+	function isFunc(string){
+		//allows dot notation in function names
+		return /^[a-zA-Z.]+$/.test(string);
+	}
+
+	function isOp(string){
+		return /^[\+\-\*\%\/><=!?&^@#$~_]+$/.test(string);
+	}
+
+	function AST(tokens){
+		this.children = [];
+		this.name = null;
+		this.type = null;
+		var counter = new ParenCounter();
+		//args for parsing current child node
+		var args = [];
+		var nmode = true;
+		var smode = false;
+		var emode = false;
+		for (var i = 0; i < tokens.length; i++) {
+			if(nmode){
+				if (isOp(tokens[i])) {
+					this.type = "op";
+					this.name = tokens[i];
+					this.nmode = false;
+					this.smode = true;
+				}
+				else if(isFunc(tokens[i])){
+					this.type = "func";
+					this.name = tokens[i];
+					this.nmode = false;
+					this.smode = true;
+				}
+				else {
+
+				}
+			}
+			else if(smode){
+
+			}
+			else if(emode){
+
+			}
+		};
+	}
+	return AST;
+})();
+
+exports.AST = AST;
