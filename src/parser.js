@@ -54,41 +54,6 @@ function ParenCounter(){
     };
 }
 
-//main level parser function
-var Parse = function(tokens){
-	var fnmode = true;
-	var smode = false;
-	var emode = false;
-	var curnode = null;
-	var ast = {sym:"program", children:[]};
-	var counter = new ParenCounter();
-	for (var i = 0; i < tokens.length; i++) {
-		//not finished
-		if (fnmode){
-			if(tokens[i] in funcTable){
-				//finds a function token
-				curnode = AbsNode(tokens[i]);
-				smode = true;
-				fnmode = false;
-			}
-		}
-		else if (smode){
-			if (tokens[i] === "("){
-				counter.put(tokens[i]);
-				smode = false;
-				emode = true;
-			}
-		}
-		else if(emode){
-			if(tokens[i] === ")"){
-
-			}
-			else {
-
-			}
-		}
-	};
-};
 
 var AST = (function(){
 	//determines if string is a primitive value
@@ -98,7 +63,8 @@ var AST = (function(){
 
 	function isFunc(string){
 		//allows dot notation in function names
-		return /^[a-zA-Z.]+$/.test(string);
+		//checks for opers too
+		return /^[\+\-\*\%\/><=!?&^@#$~_]+$|^[a-zA-Z.]+$/.test(string);
 	}
 
 	function isOp(string){
@@ -106,9 +72,8 @@ var AST = (function(){
 	}
 
 	function AST(tokens){
-		this.children = [];
 		this.name = null;
-		this.type = null;
+		this.children = [];
 		var counter = new ParenCounter();
 		//args for parsing current child node
 		var args = [];
@@ -117,27 +82,43 @@ var AST = (function(){
 		var emode = false;
 		for (var i = 0; i < tokens.length; i++) {
 			if(nmode){
-				if (isOp(tokens[i])) {
-					this.type = "op";
+				if(isFunc(tokens[i])){
 					this.name = tokens[i];
-					this.nmode = false;
-					this.smode = true;
+					nmode = false;
+					smode = true;
 				}
-				else if(isFunc(tokens[i])){
-					this.type = "func";
-					this.name = tokens[i];
-					this.nmode = false;
-					this.smode = true;
-				}
-				else {
-
+				else if(tokens[i] !== ",") {
+					this.children.push(tokens[i]);
 				}
 			}
 			else if(smode){
-
+				if(tokens[i] === "("){
+					counter.put(tokens[i]);
+					smode = false;
+					emode = true;
+				}
+				else {
+					throw "Non-parenthsis succeeds func name";
+				}
 			}
 			else if(emode){
-
+				//this mode uses the balancer to parse through deep nests of functions, then constructs the child nodes recursively
+				if(counter.put(tokens[i])){
+					console.log(args);
+					if(args.length > 0) this.children.push(new AST(args.slice()));
+					emode = false;
+					nmode = true;
+					args = [];
+				}
+				else {
+					if(isPrim(tokens[i])){
+						this.children.push(tokens[i]);
+					}
+					else {
+						//needs future update of how to handle commas.
+						if(tokens[i] !== ",") args.push(tokens[i]);
+					}
+				}
 			}
 		};
 	}
