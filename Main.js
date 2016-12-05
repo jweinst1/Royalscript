@@ -16,8 +16,7 @@ rl.on('line', function(line) {
             process.exit(0);
         default:
             var test = tk.Tokenize(line);
-            test = new prs.AST(test);
-            console.log(JSON.stringify(test));
+            console.log(test);
             break;
     }
     rl.prompt();

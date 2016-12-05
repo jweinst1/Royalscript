@@ -78,47 +78,17 @@ var AST = (function(){
 		//args for parsing current child node
 		var args = [];
 		var nmode = true;
-		var smode = false;
-		var emode = false;
+		var cmode = false;
+		var pmode = false;
 		for (var i = 0; i < tokens.length; i++) {
 			if(nmode){
-				if(isFunc(tokens[i])){
-					this.name = tokens[i];
-					nmode = false;
-					smode = true;
-				}
-				else if(tokens[i] !== ",") {
-					this.children.push(tokens[i]);
-				}
+
 			}
-			else if(smode){
-				if(tokens[i] === "("){
-					counter.put(tokens[i]);
-					smode = false;
-					emode = true;
-				}
-				else {
-					throw "Non-parenthsis succeeds func name";
-				}
+			else if(cmode){
+
 			}
-			else if(emode){
-				//this mode uses the balancer to parse through deep nests of functions, then constructs the child nodes recursively
-				if(counter.put(tokens[i])){
-					console.log(args);
-					if(args.length > 0) this.children.push(new AST(args.slice()));
-					emode = false;
-					nmode = true;
-					args = [];
-				}
-				else {
-					if(isPrim(tokens[i])){
-						this.children.push(tokens[i]);
-					}
-					else {
-						//needs future update of how to handle commas.
-						if(tokens[i] !== ",") args.push(tokens[i]);
-					}
-				}
+			else if(pmode){
+				
 			}
 		};
 	}

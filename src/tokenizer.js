@@ -4,11 +4,11 @@
 var stopDict = {
 	" ":true,
 	"\n":true,
-	"\t":true
+	"\t":true,
+	",":true
 };
 
 var keepDict = {
-	",":true,
 	"(":true,
 	")":true
 };
