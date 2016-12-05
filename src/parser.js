@@ -50,7 +50,9 @@ function ParenCounter(){
 	this[")"] = 0;
     this.put = function(token){
     	if(token in this) this[token] += 1;
-    	return this["("] === this[")"];
+    };
+    this.offset = function(){
+    	return this["("] - this[")"];
     };
 }
 
@@ -77,18 +79,49 @@ var AST = (function(){
 		var counter = new ParenCounter();
 		//args for parsing current child node
 		var args = [];
-		var nmode = true;
-		var cmode = false;
-		var pmode = false;
-		for (var i = 0; i < tokens.length; i++) {
-			if(nmode){
-
-			}
-			else if(cmode){
-
-			}
-			else if(pmode){
-				
+		for (var i = 0; i < tokens.length-1; i++) {
+			counter.put(tokens[i]);
+			//console.log(counter.offset());
+			switch(counter.offset()) {
+				case -1:
+				    throw "INVALID Parenthsis";
+				    break;
+				case 0:
+				    if(tokens[i+1] === "("){
+				    	this.name = tokens[i];
+				    	counter.put("(");
+				    	i += 1; //skips parenthesis token
+				    }
+				    //else if(i === tokens.length-1 && tokens[i] === ")")
+				    else {
+				    	throw "Error token not starting function";
+				    }
+				    break;
+				case 1:
+				    if(tokens[i+1] === "("){
+				    	args.push(tokens[i]);
+				    	args.push("(");
+				    	counter.put("(");
+				    	i += 1; //skips parenthesis token
+				    }
+				    else {
+				    	this.children.push(tokens[i]);
+				    }
+				    break;
+				case 2:
+				    if(tokens[i+1] === ")"){
+				    	//skips closing parenthesis and closes child AST node.
+				    	args.push(tokens[i]);
+				    	args.push(")");
+				    	counter.put(")");
+				    	if(args[0] === ")") args.splice(0, 1);
+				    	this.children.push(new AST(args.slice()));
+				    	args = [];
+				    	i += 1;
+				    }
+				default:
+				    args.push(tokens[i]);
+				    break;
 			}
 		};
 	}

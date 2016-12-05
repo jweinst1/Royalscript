@@ -14,6 +14,7 @@ var keepDict = {
 };
 
 var Tokenize = function(code){
+	code = "program(" + code + ")";
 	var current = "";
 	var tokens = [];
 	var mode = false;
