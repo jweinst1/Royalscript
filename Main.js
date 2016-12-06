@@ -3,7 +3,7 @@ var readline = require('readline'),
     rl = readline.createInterface(process.stdin, process.stdout);
 
 var tk = require("./src/tokenizer.js");
-var prs = require("./src/parser.js");
+var prs = require("./src/RoyalParse.js");
 
 rl.setPrompt('Royal> ');
 rl.prompt();
@@ -15,9 +15,7 @@ rl.on('line', function(line) {
         case 'close':
             process.exit(0);
         default:
-            var test = tk.Tokenize(line);
-            test = new prs.AST(test);
-            console.log(JSON.stringify(test, null, 3));
+            console.log(prs.RoyalParse(line));
             break;
     }
     rl.prompt();
