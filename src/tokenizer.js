@@ -23,7 +23,7 @@ var Tokenize = function(code){
 		if(mode) {
 			if(code[i] in stopDict) {
 				mode = false;
-				tokens.push(current);
+				if(current) tokens.push(current);
 				current = ""
 			}
 			else if(code[i] in keepDict){
