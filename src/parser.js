@@ -92,7 +92,6 @@ var AST = (function(){
 				    	counter.put("(");
 				    	i += 1; //skips parenthesis token
 				    }
-				    //else if(i === tokens.length-1 && tokens[i] === ")")
 				    else {
 				    	throw "Error token not starting function";
 				    }
@@ -103,6 +102,15 @@ var AST = (function(){
 				    	args.push("(");
 				    	counter.put("(");
 				    	i += 1; //skips parenthesis token
+				    	if(tokens[i+1] === ")"){
+				    		//parses empty call functions f()
+				    		args.push(")");
+				    		counter.put(")");
+				    		if(args[0] === ")") args.splice(0, 1);
+				    		this.children.push(new AST(args.slice()));
+				    		args = [];
+				    		i += 1;
+				    	}
 				    }
 				    else {
 				    	this.children.push(tokens[i]);
