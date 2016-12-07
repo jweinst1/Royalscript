@@ -29,4 +29,16 @@ function callFromLib(lib, name, args, spacer){
 	else return lib[name](args, spacer);
 }
 
+//utility function that makes calls to the library and un-nests the AST.
+//checks types unlike callFromLib
+function handleNest(lib, first, second, spacer){
+	if(typeof first === 'string' && typeof second === 'object'){
+		if(!(first in lib)) throw "Name Error: Function " + first + " not found.";
+		else return lib[first](second, spacer);	
+	}
+	else {
+		return first;
+	}
+}
+
 console.log(STD["+"]([ '+', [ 1, 2, '-', [ 5, 6 ] ] ], ""));
