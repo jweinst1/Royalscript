@@ -5,7 +5,17 @@ var STD = {
 		var string = spacer;
 		if (typeof args[0] === 'string' && typeof args[1] === 'object') { string += this[args[0]](args[1], spacer);} else{string += args[0]};
 		for (var i = 1; i < args.length; i++) {
-			if (typeof args[i] === 'string' && typeof args[i+1] === 'object') { string += " + " + this[args[i]](args[i+1], spacer);} else{string += " + " + args[i]};
+			switch(typeof args[i]){
+				case 'string':
+				   if(typeof args[i+1] === 'object') {
+				   	  string += " + " + callFromLib(this, args[i], args[i+1], spacer);
+				   }
+				   break;
+				case 'object':
+				   break;
+				default:
+				   string += " + " + args[i];
+			}
 		};
 		return string;
 	}
@@ -19,4 +29,4 @@ function callFromLib(lib, name, args, spacer){
 	else return lib[name](args, spacer);
 }
 
-console.log(STD["+"]([ '+', [ 1, 2, '+', [ 5, 6 ] ] ], ""));
+console.log(STD["+"]([ '+', [ 1, 2, '-', [ 5, 6 ] ] ], ""));
