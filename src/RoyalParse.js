@@ -1,7 +1,14 @@
 //faster version for tokenizer and parser in one
 
+
+//checks for illegal string patterns that cannot be resolved by parsing
+function checkForBad(string){
+	return string.search(/\{\}|\[\]/) !== -1;
+}
+
 var RoyalParse = function(code){
-	try {
+
+		  if(checkForBad(code)) throw "Illegal Parenthesis Error";
 		  var tokens = code.split(/(\()|(\))|(,)|( )|\n|\t/);
 		  var repdict = {
 		  	"(":"[",
@@ -15,10 +22,6 @@ var RoyalParse = function(code){
 		  	}
 		  }
 		  return JSON.parse('[' + tokens.join("") + ']');
-		}
-	catch(err){
-		return err.name;
-	}
 };
 
 exports.RoyalParse = RoyalParse;
