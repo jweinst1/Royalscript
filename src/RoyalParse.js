@@ -7,8 +7,10 @@ function checkForBad(string){
 }
 
 //prepares `` strings for parser
-function padIfString(string){
+//Also prepares variable strings
+function varStringPrep(string){
 	if(/^`[^`]*`$/.test(string)) return '"`' + string.slice(1, -1) + '`"';
+	else if(/^[$A-Z_][0-9A-Z_$]*$/i.test(string)) return '"' + string + '"';
 	else return string;
 }
 
@@ -21,6 +23,14 @@ function clean(arr){
 	return newarr;
 }
 
+//list of words that cannot be used as variable or function names in RoyalScript
+//can be handled by eval syntax error
+var illegalWords = {
+	"function":true,
+	"var":true,
+	"if":true
+};
+
 var RoyalParse = function(code){
 
 		  if(checkForBad(code)) throw "Illegal Parenthesis Error";
@@ -31,11 +41,11 @@ var RoyalParse = function(code){
 		  	"undefined":''
 		  };
 		  for (var i=0;i<tokens.length;i++){
-		  	tokens[i] = padIfString(tokens[i]);
 		  	if(tokens[i] in repdict) tokens[i] = repdict[tokens[i]];
 		  	else if(tokens[i+1] === "("){
 		  		tokens[i] = '"' + tokens[i] + '",';
 		  	}
+		  	tokens[i] = varStringPrep(tokens[i]);
 		  }
 		  return JSON.parse('[' + tokens.join("") + ']');
 };
