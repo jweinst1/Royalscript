@@ -1,61 +1,97 @@
-//faster version for tokenizer and parser in one
+//tokenizer for Royal Script language
+//2016
 
+//cached token tree that allows the tokenizer to split code very quickly
+var keepTokens = {
+	"(":",[",
+	")":"]",
+    ",":","
+};
 
-//checks for illegal string patterns that cannot be resolved by parsing
-function checkForBad(string){
-	return string.search(/\{\}|\[\]/) !== -1;
-}
+var stopTokens = {
+	" ":true,
+	"\n":true
+};
 
-//prepares `` strings for parser
-//Also prepares variable strings
-function varStringPrep(string){
-	if(/^[$A-Z_][0-9A-Z_$]*$/i.test(string)) return '"' + string + '"';
-	else return string;
-}
+var illegalTokens = {
+	"{":true,
+	"}":true,
+	"[":true,
+	"]":true,
+	":":true,
+	'"':true
+};
 
-//cleans undefined and '' from token list
-function clean(arr){
-	var newarr = [];
-	for (var i = 0; i < arr.length; i++) {
-		if(arr[i]) newarr.push(arr[i]);
+var valTokens = {
+	"null":true,
+	"true":true,
+	"false":true
+};
+
+//main tokenizer
+var Parse = function(code){
+	var cmode = false;
+	var smode = false;
+	var tmode = false;
+	var tokens = [];
+	var current = "";
+	for (var i = 0; i < code.length; i++) {
+		if(smode){
+			if(code[i] === "`"){
+				smode = false;
+				tokens.push(current +'`"');
+				current = "";
+				//break;
+			}
+			else {
+				current += code[i];
+			}
+		}
+		else if(cmode){
+			if(code[i] === ";"){
+				cmode = false;
+			}			
+		}
+		else {
+			if(code[i] in illegalTokens) throw "illegalToken: " + code[i];
+			if(tmode){
+				if(code[i] in stopTokens){
+					tmode = false;
+					tokens.push('"' + current + '"');
+					current = "";
+				}
+				else if(code[i] in keepTokens){
+					tmode = false;
+					tokens.push('"' + current + '"');
+					current = "";
+					tokens.push(keepTokens[code[i]]);
+				}
+				else{
+					current += code[i];
+				}
+			}
+			else {
+				if (code[i] in keepTokens) {
+					tokens.push(keepTokens[code[i]]);
+				}
+				else if(!(code[i] in stopTokens)){
+					if(code[i] === "`"){
+						smode = true;
+						current += '"`';
+					}
+					else if(code[i] === ";"){
+						cmode = true;
+					}
+					else {
+						tmode = true;
+						current += code[i];
+					}
+				}
+			}
+		}
 	};
-	return newarr;
-}
-
-//list of words that cannot be used as variable or function names in RoyalScript
-//can be handled by eval syntax error
-var illegalWords = {
-	"function":true,
-	"var":true,
-	"if":true
+	if(current) tokens.push(current);
+	return JSON.parse("[" + tokens.join("") + "]");
 };
 
-var RoyalParse = function(code){
-
-	      var strmode = false;
-
-		  if(checkForBad(code)) throw "Illegal Parenthesis Error";
-		  //not working for paren in strings
-		  var tokens = clean(code.split(/(`)|(\()|(\))|(,)|( )|\n|\t/));
-		  console.log(tokens);
-		  var repdict = {
-		  	"(":"[",
-		  	")":"]",
-		  	"undefined":''
-		  };
-		  for (var i=0;i<tokens.length;i++){
-		  	if(tokens[i] === '`'){
-		  		if(strmode){ tokens[i] = '"' + tokens[i]; strmode = true;}
-		  		else { tokens[i]+='"'; strmode = false;};
-		  	}
-		  	if(tokens[i] in repdict) tokens[i] = repdict[tokens[i]];
-		  	else if(tokens[i+1] === "("){
-		  		tokens[i] = '"' + tokens[i] + '",';
-		  	}
-		  	tokens[i] = varStringPrep(tokens[i]);
-		  }
-		  return JSON.parse('[' + tokens.join("") + ']');
-};
-
-exports.RoyalParse = RoyalParse;
-
+exports.Parse = Parse;

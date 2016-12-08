@@ -33,7 +33,7 @@ function callFromLib(lib, name, args, spacer){
 //checks types unlike callFromLib
 function handleNest(lib, first, second, spacer){
 	if(typeof first === 'string' && typeof second === 'object'){
-		if(/^"[^"]*"$/.test(first)) first = '"' + first + '"';
+		//if(/^"[^"]*"$/.test(first)) first = '"' + first + '"';
 		if(!(first in lib)) throw "Name Error: Function " + first + " not found.";
 		else return lib[first](second, spacer);	
 	}
