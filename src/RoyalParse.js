@@ -9,8 +9,7 @@ function checkForBad(string){
 //prepares `` strings for parser
 //Also prepares variable strings
 function varStringPrep(string){
-	if(/^`[^`]*`$/.test(string)) return '"`' + string.slice(1, -1) + '`"';
-	else if(/^[$A-Z_][0-9A-Z_$]*$/i.test(string)) return '"' + string + '"';
+	if(/^[$A-Z_][0-9A-Z_$]*$/i.test(string)) return '"' + string + '"';
 	else return string;
 }
 
@@ -33,14 +32,22 @@ var illegalWords = {
 
 var RoyalParse = function(code){
 
+	      var strmode = false;
+
 		  if(checkForBad(code)) throw "Illegal Parenthesis Error";
-		  var tokens = clean(code.split(/(^`[^`]*`$)|(\()|(\))|(,)|( )|\n|\t/));
+		  //not working for paren in strings
+		  var tokens = clean(code.split(/(`)|(\()|(\))|(,)|( )|\n|\t/));
+		  console.log(tokens);
 		  var repdict = {
 		  	"(":"[",
 		  	")":"]",
 		  	"undefined":''
 		  };
 		  for (var i=0;i<tokens.length;i++){
+		  	if(tokens[i] === '`'){
+		  		if(strmode){ tokens[i] = '"' + tokens[i]; strmode = true;}
+		  		else { tokens[i]+='"'; strmode = false;};
+		  	}
 		  	if(tokens[i] in repdict) tokens[i] = repdict[tokens[i]];
 		  	else if(tokens[i+1] === "("){
 		  		tokens[i] = '"' + tokens[i] + '",';

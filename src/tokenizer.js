@@ -1,62 +1,99 @@
 //tokenizer for Royal Script language
 //2016
 
-var stopDict = {
-	" ":true,
-	"\n":true,
-	"\t":true,
-	",":true
-};
+//tests if string is digit
+function isDigit(n) {
+    return Boolean([true, true, true, true, true, true, true, true, true, true][n]);
+}
 
-var keepDict = {
+//cached token tree that allows the tokenizer to split code very quickly
+var keepTokens = {
 	"(":true,
-	")":true
+	")":true,
+    ",":true
 };
 
+var stopTokens = {
+	" ":true,
+	"\n":true
+};
+
+var illegalTokens = {
+	"{":true,
+	"}":true,
+	"[":true,
+	"]":true,
+	":":true,
+	'"':true
+};
+
+//main tokenizer
 var Tokenize = function(code){
-	code = "program(" + code + ")";
-	var current = "";
+	var cmode = false;
+	var smode = false;
+	var tmode = false;
 	var tokens = [];
-	var mode = false;
-	var strmode = false;
+	var current = "";
 	for (var i = 0; i < code.length; i++) {
-		if(mode) {
-			if(code[i] in stopDict) {
-				mode = false;
-				if(current) tokens.push(current);
-				current = ""
-			}
-			else if(code[i] in keepDict){
-				if (current) tokens.push(current);
-				tokens.push(code[i]);
-				mode = false;
+		if(smode){
+			if(code[i] === "`"){
+				smode = false;
+				tokens.push(current +'`"');
 				current = "";
+				//break;
 			}
-			else current += code[i];
-		}
-		else if(strmode){
-			if(code[i] === '"'){
-				strmode = false;
+			else {
 				current += code[i];
-				tokens.push(current);
-				current = "";
 			}
-			else current += code[i];
+		}
+		else if(cmode){
+			if(code[i] === ";"){
+				cmode = false;
+			}			
 		}
 		else {
-			//spots start of string and switches to string mode
-			if(code[i] === '"'){
-				current += code[i];
-				strmode = true;
+			if(code[i] in illegalTokens) throw "illegalToken: " + code[i];
+			if(tmode){
+				if(code[i] in stopTokens){
+					tmode = false;
+					tokens.push('"' + current + '"');
+					current = "";
+				}
+				else if(code[i] in keepTokens){
+					tmode = false;
+					tokens.push('"' + current + '"');
+					current = "";
+					tokens.push(code[i]);
+				}
+				else{
+					current += code[i];
+				}
 			}
-			else if(!(code[i]in stopDict)) {
-				mode = true;
-				if (code[i] in keepDict) {tokens.push(code[i])} else{current += code[i];};
+			else {
+				if (code[i] in keepTokens) {
+					tokens.push(code[i]);
+				}
+				else if(!(code[i] in stopTokens)){
+					if(code[i] === "`"){
+						smode = true;
+						current += '"`';
+					}
+					else if(code[i] === ";"){
+						cmode = true;
+					}
+					else {
+						tmode = true;
+						current += code[i];
+					}
+				}
 			}
 		}
-	}
-	if (current) tokens.push(current);
+	};
+	if(current) tokens.push(current);
 	return tokens;
 };
 
 exports.Tokenize = Tokenize;
+
+
+console.log(Tokenize("a(`((()()()(`, c)"))
