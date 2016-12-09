@@ -74,10 +74,15 @@ var STD = {
 	},
 	"**":function(args, spacer){
 		return spacer + "Math.pow(" + this[","](args, spacer) + ")";
+	},
+	//printing function
+	"$":function(args, spacer){
+		return spacer + "console.log(" + this[","](args, spacer) + ");";
 	}
+	//conditions
 };
 
 exports.STD = STD;
 
-var obj = [ '//', [ '5', '6', '//', [ '3', '4' ] ] ];
-console.log(STD["//"](obj[1], ""));
+var obj = [ '$', [ '5', '6', '//', [ '3', '4' ] ] ];
+console.log(STD[obj[0]](obj[1], ""));
