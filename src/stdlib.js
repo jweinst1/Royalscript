@@ -11,6 +11,7 @@ var callLib = function(lib, first, second, spacer){
 };
 
 //standard library object
+//functions starting with , are private and cannot be called in the front-end
 var STD = {
 	//Comma join util cannot be directly called
 	",":function(args, spacer){
@@ -21,6 +22,16 @@ var STD = {
 			}
 		};
 		return str;
+	},
+	//private infix joiner function
+	",infix":function(sep, args, spacer){
+		var str = spacer + callLib(this, args[0], args[1], spacer);
+		for (var i = 1; i < args.length; i++) {
+			if(!(typeof args[i] === 'object')){
+				str += sep + callLib(this, args[i], args[i+1], spacer);
+			}
+		};
+		return str;		
 	},
 	//MATH
 	"+":function(args, spacer){
@@ -82,13 +93,7 @@ var STD = {
 	//CONDITIONS
 	//or oper
 	"||":function(args, spacer){
-		var str = spacer + callLib(this, args[0], args[1], spacer);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += " || " + callLib(this, args[i], args[i+1], spacer);
-			}
-		};
-		return str;
+		return this[",infix"](" || ", args, spacer);
 	},
 	//and oper
 	"&&":function(args, spacer){
@@ -99,10 +104,13 @@ var STD = {
 			}
 		};
 		return str;
+	},
+	"==":function(args, spacer){
+		//not implemented
 	}
 };
 
 exports.STD = STD;
 
-var obj = [ '$', [ '5', '6', '//', [ '3', '4' ], '&&', ['true', 'false'] ] ];
+var obj = [ '$', [ '5', '6', '||', [ '3', '4' ], '&&', ['true', 'false'] ] ];
 console.log(STD[obj[0]](obj[1], ""));
