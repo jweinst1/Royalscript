@@ -78,11 +78,31 @@ var STD = {
 	//printing function
 	"$":function(args, spacer){
 		return spacer + "console.log(" + this[","](args, spacer) + ");";
+	},
+	//CONDITIONS
+	//or oper
+	"||":function(args, spacer){
+		var str = spacer + callLib(this, args[0], args[1], spacer);
+		for (var i = 1; i < args.length; i++) {
+			if(!(typeof args[i] === 'object')){
+				str += " || " + callLib(this, args[i], args[i+1], spacer);
+			}
+		};
+		return str;
+	},
+	//and oper
+	"&&":function(args, spacer){
+		var str = spacer + callLib(this, args[0], args[1], spacer);
+		for (var i = 1; i < args.length; i++) {
+			if(!(typeof args[i] === 'object')){
+				str += " && " + callLib(this, args[i], args[i+1], spacer);
+			}
+		};
+		return str;
 	}
-	//conditions
 };
 
 exports.STD = STD;
 
-var obj = [ '$', [ '5', '6', '//', [ '3', '4' ] ] ];
+var obj = [ '$', [ '5', '6', '//', [ '3', '4' ], '&&', ['true', 'false'] ] ];
 console.log(STD[obj[0]](obj[1], ""));
