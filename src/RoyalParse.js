@@ -27,9 +27,14 @@ var valTokens = {
 	"true":true,
 	"false":true
 };
+//small function to check for illegal parenthesis patterns
+function badSyntax(code){
+	if(code.search(/\)\(/) !== -1) throw "Missing Function Error";
+}
 
 //main tokenizer
 var Parse = function(code){
+	badSyntax(code);
 	var cmode = false;
 	var smode = false;
 	var tmode = false;
