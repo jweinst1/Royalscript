@@ -57,12 +57,51 @@ var get1Args = function(lib, args){
 
 exports.get1Args = get1Args;
 
+//special switch function that allows only 3 arguments and unnests them from the AST, throws an error
+var get3Args = function(lib, args){
+	switch(args.length){
+		case 3:
+		    if(typeof args[0] === 'string' && typeof args[1] === 'string' && typeof args[2] === 'string') return[args[0], args[1], args[2]];
+		    else throw "Argument Error: Got improper arguments but expected 3."
+		    break;
+		case 4:
+		   if(typeof args[1] === 'object' && typeof args[3] === 'string'){
+		   	  return [callLib(lib, args[0], args[1]), args[2], args[3]];
+		   }
+		   else if(typeof args[2] === 'object'){
+		   	  return [args[0], callLib(lib, args[1], args[2]), args[3]];
+		   }
+		   else if(typeof args[3] === 'object'){
+		   	  return [args[0], args[1], callLib(lib, args[2], args[3])];
+		   }
+		   else throw "Argument Error: Got improper arguments but expected 3.";
+		   break;
+		case 5:
+		   if(typeof args[1] === 'object' && typeof args[3] === 'object'){
+		   	  return [callLib(lib, args[0], args[1]), callLib(lib, args[2], args[3]), args[4]];
+		   }
+		   else if(typeof args[2] === 'object' && typeof args[4] === 'object'){
+		   	  return [args[0], callLib(lib, args[1], args[2]), callLib(lib, args[3], args[4])];
+		   }
+		   else throw "Argument Error: Got improper arguments but expected 3.";
+		   break;
+		case 6:
+		   if(typeof args[1] === 'object' && typeof args[3] === 'object' && typeof args[5] === 'object') return [callLib(lib, args[0], args[1]), callLib(lib, args[2], args[3]), callLib(lib, args[4], args[5])];
+		   else throw "Argument Error: Got improper arguments but expected 3.";
+		default:
+		   throw "Argument Error: Got improper arguments but expected 3.";
+	}
+};
+
+exports.get3Args = get3Args;
+
 
 //standard library object
 //functions starting with , are private and cannot be called in the front-end
 var STD = {
 	",1arg":get1Args,
 	",2arg":get2Args,
+	",3arg":get3Args,
 	//Comma join util cannot be directly called
 	",":function(args){
 		if(args.length === 0) return "";
@@ -220,10 +259,15 @@ var STD = {
 	"?":function(args){
 		var elems = get2Args(this, args);
 		return "if(" + elems[0] + "){" + elems[1] + "};";
+	},
+	//if-else conditional function
+	"if":function(args){
+		var elems = get3Args(this, args);
+		return "if(" + elems[0] + "){" + elems[1] + "} else{" + elems[2] + "};"
 	}
 };
 
 exports.STD = STD;
 
-var obj = ['?', ['==', ['4', 'x'], 'do', [ '=', ['r', 'map', []], '=', ['rr', '3'], '$', ['3', '2', '+', ['5', '4']]]]];
+var obj = ['if', ['>', ['3', '3'], '$', ['5', '4', '3'], '$', ['true']]];
 console.log(STD[obj[0]](obj[1]));
