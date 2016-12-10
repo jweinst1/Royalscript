@@ -2,8 +2,10 @@
 
 //recursively calls sublists of arguments from the lib to unnest the AST
 var callLib = function(lib, first, second){
-	if(typeof second === 'object' && first in lib){
-		return lib[first](second);
+	if(typeof second === 'object'){
+		if(first in lib) return lib[first](second);
+		//if not in lib, assumes user defined function
+		else return first + "(" + lib[",infix"](", ", second) + ")";
 	}
 	else {
 		return first;
@@ -264,10 +266,48 @@ var STD = {
 	"if":function(args){
 		var elems = get3Args(this, args);
 		return "if(" + elems[0] + "){" + elems[1] + "} else{" + elems[2] + "};"
+	},
+	//FUNCTION DECLARATION
+	"def":function(args){
+		var len = args.length;
+		if(typeof args[1] === 'object') throw "Name Error: function name must be literal";
+		var str = "function " + args[0] + "(" + args[1];
+		var params = true;
+		for (var i = 2; i<len; i++) {
+			if(params){
+				if(typeof args[i+1] === 'object') throw "Name Error: function name must be literal";
+				else if(typeof args[i+2]==='object'){
+					str += ", " + args[i] + "){";
+                    params = false;
+				}
+				else str += ", " + args[i];
+			}
+			else {
+				if(!(typeof args[i] === 'object')){
+					str += callLib(this, args[i], args[i+1]);
+				}
+			}
+		};
+		//needs return function
+		return str + "};";
+	},
+	//general return function to facilitate returning one or more values. Return arrays if multiple
+	"return":function(args){
+		switch(args.length){
+			case 0:
+			   return "return;";
+			case 1:
+			   return "return " + args[0] + ";";
+			case 2:
+			   if(typeof args[1] === 'object') return "return " + callLib(this, args[0], args[1]) + ";";
+			   else return "return [" + this[","](args) + "];";
+			default:
+			   return "return [" + this[","](args) + "];";
+		}
 	}
 };
 
 exports.STD = STD;
 
-var obj = ['if', ['>', ['3', '3'], '$', ['5', '4', '3'], '$', ['true']]];
+var obj = ['def', ['a', 'b', 'c', '=', ['yy', '7'], 'return', ['yy']]];
 console.log(STD[obj[0]](obj[1]));
