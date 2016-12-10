@@ -56,6 +56,8 @@ var get1Args = function(lib, args){
 };
 
 exports.get1Args = get1Args;
+
+
 //standard library object
 //functions starting with , are private and cannot be called in the front-end
 var STD = {
@@ -139,7 +141,7 @@ var STD = {
 	"$":function(args){
 		return "console.log(" + this[","](args) + ");";
 	},
-	//CONDITIONS
+	//COMPARISONS
 	//or oper
 	"||":function(args){
 		return this[",infix"](" || ", args);
@@ -212,10 +214,16 @@ var STD = {
 	//allows a sequence of functions to be grouped together for control flow or other purposes.
 	"do":function(args){
 		return this[",infix"](" ", args);
+	},
+	//CONDITIONALS
+	//singular Conditional function
+	"?":function(args){
+		var elems = get2Args(this, args);
+		return "if(" + elems[0] + "){" + elems[1] + "};";
 	}
 };
 
 exports.STD = STD;
 
-var obj = ['do',[ '=', ['r', 'map', []], '=', ['rr', '3'], '$', ['3', '2', '+', ['5', '4']]]];
+var obj = ['?', ['==', ['4', 'x'], 'do', [ '=', ['r', 'map', []], '=', ['rr', '3'], '$', ['3', '2', '+', ['5', '4']]]]];
 console.log(STD[obj[0]](obj[1]));
