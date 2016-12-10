@@ -63,6 +63,7 @@ var STD = {
 	",2arg":get2Args,
 	//Comma join util cannot be directly called
 	",":function(args){
+		if(args.length === 0) return "";
 		var str = callLib(this, args[0], args[1]);
 		for (var i = 1; i < args.length; i++) {
 			if(!(typeof args[i] === 'object')){
@@ -181,10 +182,14 @@ var STD = {
 	"=":function(args){
 		var elems = get2Args(this, args);
 		return "var " + elems[0] + " = " + elems[1] + ";";
+	},
+	//collection initializers
+	"list":function(args){
+		return "[" + this[","](args) + "]";
 	}
 };
 
 exports.STD = STD;
 
-var obj = [ '=', ['r', '+', ['1', '-', ['1', '9'], '3']]];
+var obj = [ '=', ['r', 'list', []]];
 console.log(STD[obj[0]](obj[1]));
