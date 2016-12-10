@@ -39,9 +39,28 @@ var get2Args = function(lib, args){
 	}
 };
 
+exports.get2Args = get2Args;
+//same as get2args but only unnests up to a single argument from the AST.
+var get1Args = function(lib, args){
+	switch(args.length){
+		case 1:
+		   return args[0];
+		   break;
+		case 2:
+		   if(typeof args[1] === 'object') return callLib(lib, args[0], args[1]);
+		   else throw "Argument Error: Got improper arguments but expected 1.";
+		   break;
+		default:
+		   throw "Argument Error: Got improper arguments but expected 1.";
+	}
+};
+
+exports.get1Args = get1Args;
 //standard library object
 //functions starting with , are private and cannot be called in the front-end
 var STD = {
+	",1arg":get1Args,
+	",2arg":get2Args,
 	//Comma join util cannot be directly called
 	",":function(args){
 		var str = callLib(this, args[0], args[1]);
@@ -162,5 +181,5 @@ var STD = {
 
 exports.STD = STD;
 
-var obj = [ '$', [ '5', '6', '==', [ '+', ['5', '6'], '5'], '>=', ['true', 'false'] ] ];
+var obj = [ '$', [ '5', '6', '==', [ '+', ['5', '6'], '5', '4'], '>=', ['true', 'false'] ] ];
 console.log(STD[obj[0]](obj[1]));
