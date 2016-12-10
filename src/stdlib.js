@@ -304,10 +304,15 @@ var STD = {
 			default:
 			   return "return [" + this[","](args) + "];";
 		}
+	},
+	//single statement function, only takes one parameter, anonymous
+	"@":function(args){
+		var elems = get2Args(this, args);
+		return "function(" + elems[0] + "){return " + elems[1] + "}";
 	}
 };
 
 exports.STD = STD;
 
-var obj = ['def', ['a', 'b', 'c', '=', ['yy', '7'], 'return', ['yy']]];
+var obj = ['=', ['a', '@', ['elem', '+', ['elem', '2']]]];
 console.log(STD[obj[0]](obj[1]));
