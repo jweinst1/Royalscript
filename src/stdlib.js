@@ -82,17 +82,6 @@ var STD = {
 		};
 		return str;		
 	},
-	//same as ,infix but has a limit of the amount of arguments it links
-	",ifixn":function(sep, limit, args){
-		if(args.length < 1 || args.length > limit) throw "Argument Error: Improper number of arguments";
-		var str = callLib(this, args[0], args[1]);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += sep + callLib(this, args[i], args[i+1]);
-			}
-		};
-		return str;		
-	},
 	//MATH
 	"+":function(args){
 		var str = callLib(this, args[0], args[1]);
@@ -219,10 +208,14 @@ var STD = {
 		};
 		if(!(kmode)) str += "null";
 		return str + "}";
+	},
+	//allows a sequence of functions to be grouped together for control flow or other purposes.
+	"do":function(args){
+		return this[",infix"](" ", args);
 	}
 };
 
 exports.STD = STD;
 
-var obj = [ '=', ['r', 'map', []]];
+var obj = ['do',[ '=', ['r', 'map', []], '=', ['rr', '3'], '$', ['3', '2', '+', ['5', '4']]]];
 console.log(STD[obj[0]](obj[1]));
