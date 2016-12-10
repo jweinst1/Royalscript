@@ -176,10 +176,15 @@ var STD = {
 	},
 	">=":function(args){
 		return this[",ifixn"](" >= ", 4, args);
+	},
+	//ASSIGNMENT function
+	"=":function(args){
+		var elems = get2Args(this, args);
+		return "var " + elems[0] + " = " + elems[1] + ";";
 	}
 };
 
 exports.STD = STD;
 
-var obj = [ '$', [ '5', '6', '==', [ '+', ['5', '6'], '5', '4'], '>=', ['true', 'false'] ] ];
+var obj = [ '=', ['r', '+', ['1', '-', ['1', '9'], '3']]];
 console.log(STD[obj[0]](obj[1]));
