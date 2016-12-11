@@ -104,6 +104,7 @@ var STD = {
 	",1arg":get1Args,
 	",2arg":get2Args,
 	",3arg":get3Args,
+	",callLib":callLib,
 	//Comma join util cannot be directly called
 	",":function(args){
 		if(args.length === 0) return "";
@@ -308,11 +309,18 @@ var STD = {
 	//single statement function, only takes one parameter, anonymous
 	"@":function(args){
 		var elems = get2Args(this, args);
-		return "function(" + elems[0] + "){return " + elems[1] + "}";
+		return "function(" + elems[0] + "){return " + elems[1] + "};";
 	}
 };
 
 exports.STD = STD;
 
-var obj = ['=', ['a', '@', ['elem', '+', ['elem', '2']]]];
-console.log(STD[obj[0]](obj[1]));
+//top level function that generates javascript
+var genCode = function(AST){ 
+	return STD[",infix"]("", AST);
+};
+
+exports.genCode = genCode;
+
+//var obj = ['=', ['a', '@', ['elem', '+', ['elem', '2']]]];
+//console.log(STD[obj[0]](obj[1]));
