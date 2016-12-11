@@ -7,6 +7,7 @@ var Balancer = function(){
     this[")"] = 0;
     this.string = "";
     this.isBalanced = function(code){
+      this.string += code;
       for (var i = code.length - 1; i >= 0; i--) {
           if(code[i] in this) this[code[i]] += 1;
         }
@@ -14,11 +15,12 @@ var Balancer = function(){
           throw "Syntax Error: Too many )";
         }
         else if(this["("] - this[")"] > 0){
-          this.string += code;
           return false;
         }
         else {
-          return true;
+          var giveback = this.string;
+          this.string = "";
+          return giveback;
         }
     };
 };
@@ -29,22 +31,53 @@ var Repl = function(){
     var readline = require('readline'),
     rl = readline.createInterface(process.stdin, process.stdout);
 
-    var prs = require("./RoyalParse.js");
+
+    var exe = require("./exec.js");
+    var cmp = require("./compiler.js");
+    var bal = new Balancer();
+    var execObj = new exe.Executor();
+    var unbal = false;
 
     rl.setPrompt('Royal> ');
     rl.prompt();
-
-    rl.on('line', function(line) {
-        switch(line.trim()) {
+    
+      rl.on('line', function(line) {
+        line = line.trim();
+        try{
+          switch(line) {
             case 'exit()':
                 process.exit(0);
+            case 'help()':
+                process.exit(0);
             default:
-                console.log(prs.Parse(line));
+                if(unbal){
+                   var result = bal.isBalanced(line);
+                   if(result) {
+                    unbal = false;
+                    console.log(eval(cmp.Compile(result)));
+                    r.setPrompt('Royal> ');
+                   }
+                   else break;
+                }
+                else {
+                  if(bal.isBalanced(line)){
+                    console.log(eval(cmp.Compile(line)));
+                  }
+                  else {
+                    unbal = true;
+                    rl.setPrompt('...> ');
+                  }
+                }
                 break;
-        }
-        rl.prompt();
-    });
-
+              }
+              rl.prompt();
+            }
+            catch(err){
+              console.log(err);
+              rl.prompt();
+            }
+        
+      });
 }
 
 exports.Repl = Repl;

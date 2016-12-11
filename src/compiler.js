@@ -9,4 +9,3 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("@(op, +(op, 5))"))
