@@ -55,7 +55,7 @@ var Repl = function(){
                    if(result) {
                     unbal = false;
                     console.log(eval(cmp.Compile(result)));
-                    r.setPrompt('Royal> ');
+                    rl.setPrompt('Royal> ');
                    }
                    else break;
                 }

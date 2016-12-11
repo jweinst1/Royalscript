@@ -1,4 +1,6 @@
-//file for node-wise transcompiling functions and generating code
+//file for importing to and extending the standard library
+//need method of importing libraries
+
 
 var CodeGenerator = (function(){
 	function CodeGenerator(lib){
