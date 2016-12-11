@@ -310,6 +310,12 @@ var STD = {
 	"@":function(args){
 		var elems = get2Args(this, args);
 		return "function(" + elems[0] + "){return " + elems[1] + "};";
+	},
+	//LOOPING FUNCTIONS
+	//condition loop single statement
+	"~":function(args){
+		var elems = get2Args(this, args);
+		return "while(" + elems[0] + "){" + elems[1] + "};";
 	}
 };
 
