@@ -58,7 +58,7 @@ var Parse = function(code){
 			}			
 		}
 		else {
-			if(code[i] in illegalTokens) throw "illegalToken: " + code[i];
+			if(code[i] in illegalTokens) throw "illegalToken: " + code[i] + i;
 			if(tmode){
 				if(code[i] in stopTokens){
 					tmode = false;
@@ -98,5 +98,6 @@ var Parse = function(code){
 	if(current) tokens.push(current);
 	return JSON.parse("[" + tokens.join("") + "]");
 };
+
 
 exports.Parse = Parse;

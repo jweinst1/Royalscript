@@ -8,4 +8,3 @@ var Compile = function(code){
 };
 
 exports.Compile = Compile;
-
