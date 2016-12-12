@@ -277,6 +277,28 @@ var STD = {
 		var elems = get3Args(this, args);
 		return "if(" + elems[0] + "){" + elems[1] + "} else{" + elems[2] + "};"
 	},
+	//SWITCH Statement
+	//cases can be expressions or variable names, or numbers or strings
+	"switch":function(args){
+		var str = "switch(" + callLib(this, args[0], args[1]) + "){";
+		var casemode = true;
+
+		for (var i = 1; i < args.length; i++) {
+			if(typeof args[i] ==='undefined') throw "Argument Error: Impropr number of arguments";
+			if(!(typeof args[i] === 'object')){
+				if(casemode){
+					str += "case " + callLib(this, args[i], args[i+1]) + ": ";
+					casemode = false;
+				}
+				else {
+					str += callLib(this, args[i], args[i+1]) + "break;";
+					casemode = true;
+				}
+			}
+		};
+		if(!(casemode)) str += "break;";
+		return str + "};";
+	},
 	//FUNCTION DECLARATION
 	"def":function(args){
 		var len = args.length;
