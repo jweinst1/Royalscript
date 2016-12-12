@@ -226,14 +226,9 @@ var STD = {
 		return "[" + this[","](args) + "]";
 	},
 	//creates a list of numbers, name must be specified
-	"seq":function(args){
-		var elems = get2Args(this, args);
-		return "(function(){for(var i=" + elems[0] + ",arr = [];i<" + elems[1] + ";i++) arr.push(i);return arr;})()";
-	},
-	//creates a range that can be loop through with a for in loop and checked with in operator
 	"range":function(args){
 		var elems = get2Args(this, args);
-		return "(function(){for(var i=" + elems[0] + ",rng = {};i<" + elems[1] + ";i++) rng[i]=true;return rng;})()";		
+		return "(function(){for(var i=" + elems[0] + ",arr = [];i<" + elems[1] + ";i++) arr.push(i);return arr;})()";
 	},
 	//IN FUNCTION, checks if something is a key in list or dict
 	"in":function(args){

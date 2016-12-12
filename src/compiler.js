@@ -9,4 +9,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("rep(list(1, 2, 3))"));
+console.log(Compile("rep(range(1, 1000))"));
