@@ -235,6 +235,11 @@ var STD = {
 		var elems = get2Args(this, args);
 		return "(function(){for(var i=" + elems[0] + ",rng = {};i<" + elems[1] + ";i++) rng[i]=true;return rng;})()";		
 	},
+	//IN FUNCTION, checks if something is a key in list or dict
+	"in":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + " in " + elems[1];
+	},
 	//map init, keys must be static strings
 	"map":function(args){
 		if(args.length === 0) return "{}";

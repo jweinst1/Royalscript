@@ -9,4 +9,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("=(a, range(+(0, 1, 2), 100))"))
+console.log(Compile("in(5, range(+(0, 1, 2), 100)), =(r, in(3, list()))"));
