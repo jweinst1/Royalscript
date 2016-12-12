@@ -257,7 +257,7 @@ var STD = {
 	"rep":function(args){
 		return get1Args(this, args) + ".slice()";
 	},
-	//allows a sequence of functions to be grouped together for control flow or other purposes.
+	//allows a sequence of functions to be grouped together for control flow or other purposes as a single arg.
 	"do":function(args){
 		return this[",infix"](" ", args);
 	},
@@ -270,14 +270,33 @@ var STD = {
 	//if-else conditional function
 	"if":function(args){
 		var elems = get3Args(this, args);
-		return "if(" + elems[0] + "){" + elems[1] + "} else{" + elems[2] + "};"
+		return "if(" + elems[0] + "){" + elems[1] + "} else{" + elems[2] + "};";
+	},
+	//multi IF series function, allows all true cases to execute
+	"ifs":function(args){
+		if(args.length < 1) throw "Argument Error: Expected at least 2 arguments";
+		var str = "";
+		var condmode = true;
+		for (var i = 0; i < args.length; i++) {
+			if(!(typeof args[i] === 'object')){
+				if(condmode){
+					str += "if(" + callLib(this, args[i], args[i+1]) + "){";
+					condmode = false;
+				}
+				else {
+					str += callLib(this, args[i], args[i+1]) + "};";
+					condmode = true;
+				}
+			}
+		};
+		if(!(condmode)) str += "};";
+		return str;
 	},
 	//SWITCH Statement
 	//cases can be expressions or variable names, or numbers or strings
 	"switch":function(args){
 		var str = "switch(" + callLib(this, args[0], args[1]) + "){";
 		var casemode = true;
-
 		for (var i = 1; i < args.length; i++) {
 			if(typeof args[i] ==='undefined') throw "Argument Error: Impropr number of arguments";
 			if(!(typeof args[i] === 'object')){
