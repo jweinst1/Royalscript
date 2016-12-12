@@ -8,3 +8,5 @@ var Compile = function(code){
 };
 
 exports.Compile = Compile;
+
+console.log(Compile("=(a, seq(0, 100))"))

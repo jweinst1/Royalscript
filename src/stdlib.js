@@ -225,6 +225,11 @@ var STD = {
 	"list":function(args){
 		return "[" + this[","](args) + "]";
 	},
+	//creates a list of numbers, name must be specified
+	"seq":function(args){
+		var elems = get2Args(this, args);
+		return "(function(){for(var i=" + args[0] + ",arr = [];i<" + args[1] + ";i++) arr.push(i);return arr;})()";
+	},
 	//map init, keys must be static strings
 	"map":function(args){
 		if(args.length === 0) return "{}";
