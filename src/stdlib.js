@@ -268,7 +268,7 @@ var STD = {
 		if(!(kmode)) str += "null";
 		return str + "}";
 	},
-	//Map get setter functions
+	//list and dict get setter functions
 	"get":function(args){
 		var elems = get2Args(this, args);
 		return elems[0] + "[" + elems[1] + "]";
@@ -276,6 +276,10 @@ var STD = {
 	"set":function(args){
 		var elems = get3Args(this, args);
 		return elems[0] + "[" + elems[1] + "] = " + elems[2] + ";";
+	},
+	//list util functions
+	"len":function(args){
+		return get1Args(this, args) + ".length";
 	},
 	//allows a sequence of functions to be grouped together for control flow or other purposes.
 	"do":function(args){
