@@ -241,7 +241,7 @@ var STD = {
 		return elems[0] + " in " + elems[1];
 	},
 	//map init, keys must be static strings
-	"map":function(args){
+	"dict":function(args){
 		if(args.length === 0) return "{}";
 		var str = "{";
 		var kmode = true;
