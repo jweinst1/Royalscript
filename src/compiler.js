@@ -9,4 +9,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("cut(list(1, 2, 3), 0, 1)"));
+console.log(Compile("rep(list(1, 2, 3))"));

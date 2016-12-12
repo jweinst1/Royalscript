@@ -286,6 +286,10 @@ var STD = {
 		var elems = get3Args(this, args);
 		return elems[0] + ".slice(" + elems[1] + ", " + elems[2] + ")";
 	},
+	//copies the list to a new instance important for immutable
+	"rep":function(args){
+		return get1Args(this, args) + ".slice()";
+	},
 	//allows a sequence of functions to be grouped together for control flow or other purposes.
 	"do":function(args){
 		return this[",infix"](" ", args);
