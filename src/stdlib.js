@@ -240,7 +240,7 @@ var STD = {
 		var elems = get2Args(this, args);
 		return elems[0] + " in " + elems[1];
 	},
-	//map init, keys must be static strings
+	//change to class possibly
 	"dict":function(args){
 		if(args.length === 0) return "{}";
 		var str = "{";
@@ -268,7 +268,7 @@ var STD = {
 		if(!(kmode)) str += "null";
 		return str + "}";
 	},
-	//list and dict get setter functions
+	//list get setter functions
 	"get":function(args){
 		var elems = get2Args(this, args);
 		return elems[0] + "[" + elems[1] + "]";
@@ -280,6 +280,11 @@ var STD = {
 	//list util functions
 	"len":function(args){
 		return get1Args(this, args) + ".length";
+	},
+	//gets a slice of a list
+	"cut":function(args){
+		var elems = get3Args(this, args);
+		return elems[0] + ".slice(" + elems[1] + ", " + elems[2] + ")";
 	},
 	//allows a sequence of functions to be grouped together for control flow or other purposes.
 	"do":function(args){
