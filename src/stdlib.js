@@ -128,49 +128,19 @@ var STD = {
 	},
 	//MATH
 	"+":function(args){
-		var str = callLib(this, args[0], args[1]);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += " + " + callLib(this, args[i], args[i+1]);
-			}
-		};
-		return str;
+		return this[",infix"](" + ", args);
 	},
 	"-":function(args){
-		var str = callLib(this, args[0], args[1]);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += " - " + callLib(this, args[i], args[i+1]);
-			}
-		};
-		return str;
+		return this[",infix"](" + ", args);
 	},
 	"*":function(args){
-		var str = callLib(this, args[0], args[1]);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += " * " + callLib(this, args[i], args[i+1]);
-			}
-		};
-		return str;
+		return this[",infix"](" + ", args);
 	},
 	"/":function(args){
-		var str = callLib(this, args[0], args[1]);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += " / " + callLib(this, args[i], args[i+1]);
-			}
-		};
-		return str;
+		return this[",infix"](" / ", args);
 	},
 	"%":function(args){
-		var str = callLib(this, args[0], args[1]);
-		for (var i = 1; i < args.length; i++) {
-			if(!(typeof args[i] === 'object')){
-				str += " % " + callLib(this, args[i], args[i+1]);
-			}
-		};
-		return str;
+		return this[",infix"](" % ", args);
 	},
 	//floor division, calls other function in lib
 	"//":function(args) {
@@ -296,7 +266,7 @@ var STD = {
 	//CONCAT FUNCTION works on list or strings
 	"&":function(args){
 		var elems = get2Args(this, args);
-		return elems[0] + ".concat(" + elems[1] + ");";
+		return elems[0] + ".concat(" + elems[1] + ")";
 	},
 	//allows a sequence of functions to be grouped together for control flow or other purposes as a single arg.
 	"do":function(args){

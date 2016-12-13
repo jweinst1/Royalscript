@@ -10,4 +10,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("find(list(`1`, `4`), `4`)"));
+console.log(Compile("&(`1`, +(`1`, `1`))"));
