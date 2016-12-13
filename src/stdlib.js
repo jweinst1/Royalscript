@@ -437,6 +437,10 @@ var STD = {
 		 	}
 		 };
 		 return str.slice(0, -1) + ")";
+	},
+	//TYPE FUNCTION gets constructor.name as a string representation
+	"type":function(args){
+		return  "(" + get1Args(this, args) + ").constructor.name";
 	}
 };
 
