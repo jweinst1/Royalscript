@@ -19,3 +19,5 @@ t.compileTest("random(0, **(1, 2, 3))", "Math.floor((Math.random() * Math.pow(1,
 //newline, multistatement
 t.compileTest("+(8, 6), -(5, 3)", "8 + 6\n5 - 3", 14);
 t.compileTest("+(8, 6), **(5, 3)", "8 + 6\nMath.pow(5, 3)", 15);
+//make 
+t.compileTest("make(0, 10)", "(function(){for(var i=0,arr = [];i<10;i++) arr.push(0);return arr;})()", 16);

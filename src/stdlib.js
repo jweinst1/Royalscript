@@ -288,6 +288,11 @@ var STD = {
 		var elems = get2Args(this, args);
 		return elems[0] + ".filter(" + elems[1] + ")";
 	},
+	//MAKE FUNCTION makes a list of some length with a repeated value
+	"make":function(args){
+		var elems = get2Args(this, args);
+		return "(function(){for(var i=0,arr = [];i<" + elems[1] + ";i++) arr.push(" + elems[0] + ");return arr;})()";
+	},
 	//CONCAT FUNCTION works on list or strings
 	"&":function(args){
 		var elems = get2Args(this, args);
