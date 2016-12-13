@@ -10,4 +10,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("same(list(1, 2, 3), range(1, 4))"))
+console.log(Compile("~(`who`, `^.+`)"))

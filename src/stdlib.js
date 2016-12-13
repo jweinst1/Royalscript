@@ -201,6 +201,12 @@ var STD = {
 		var elems = get2Args(this, args);
 		return "JSON.stringify(" + elems[0] + ")=== JSON.stringify(" + elems[1] + ")";
 	},
+	//MATCH FUNCTION performs regex match on left operand string
+	//returns boolean if match
+	"~":function(args){
+		var elems = get2Args(this, args);
+		return "new RegExp(" + elems[1] + ").test(" + elems[0] + ")";
+	},
 	//collection initializers
 	"list":function(args){
 		return "[" + this[","](args) + "]";
