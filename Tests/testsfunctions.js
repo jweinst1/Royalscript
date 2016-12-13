@@ -17,3 +17,4 @@ t.compileTest("args(a, b, c)", "a, b, c", 10);
 t.compileTest("def(fn, args(a, b, c, d), return(-(a, b, c, d)))", "function fn(a, b, c, d){return a - b - c - d;}", 11);
 //unnamed function
 t.compileTest("def(_, args(a, b, c, d), return(-(a, b, c, d)))", "function _(a, b, c, d){return a - b - c - d;}", 12);
+t.compileTest("def(_, args(a), return(-(a, 3)))", "function _(a){return a - 3;}", 13);
