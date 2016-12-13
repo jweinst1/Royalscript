@@ -383,25 +383,20 @@ var STD = {
 	"def":function(args){
 		var len = args.length;
 		if(typeof args[1] === 'object') throw "Name Error: function name must be literal";
-		var str = "function " + args[0] + "(" + args[1];
-		var params = true;
-		for (var i = 2; i<len; i++) {
-			if(params){
-				if(typeof args[i+1] === 'object') throw "Name Error: function name must be literal";
-				else if(typeof args[i+2]==='object'){
-					str += ", " + args[i] + "){";
-                    params = false;
-				}
-				else str += ", " + args[i];
-			}
-			else {
-				if(!(typeof args[i] === 'object')){
-					str += callLib(this, args[i], args[i+1]);
-				}
+		if(args[1] !== 'args') throw "Call Error: function must be defind with params list"
+		var str = "function " + args[0] + "(" + callLib(this, args[1], args[2]) + "){";
+		for (var i = 3; i<len; i++) {
+			if(!(typeof args[i] === 'object')){
+				str += callLib(this, args[i], args[i+1]);
 			}
 		};
 		//needs return function
 		return str + "}";
+	},
+	//ARGS FUNCTION
+	//acts as a grouping of literal values or other types of values
+	"args":function(args){
+		return this[","](args);
 	},
 	//general return function to facilitate returning one or more values. Return arrays if multiple
 	"return":function(args){

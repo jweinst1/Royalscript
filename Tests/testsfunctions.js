@@ -13,3 +13,7 @@ t.compileTest("@@(a, b, &&(==(a, b), !=(b, 3)))", "function(a,b){return a === b 
 //closure test
 t.compileTest("@(a, @(b, +(a, b)))", "function(a){return function(b){return a + b}}", 8);
 t.compileTest("@(a, @(b, ==(a, b)))", "function(a){return function(b){return a === b}}", 9);
+t.compileTest("args(a, b, c)", "a, b, c", 10);
+t.compileTest("def(fn, args(a, b, c, d), return(-(a, b, c, d)))", "function fn(a, b, c, d){return a - b - c - d;}", 11);
+//unnamed function
+t.compileTest("def(_, args(a, b, c, d), return(-(a, b, c, d)))", "function _(a, b, c, d){return a - b - c - d;}", 12);
