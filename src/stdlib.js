@@ -401,7 +401,7 @@ var STD = {
 			}
 		};
 		//needs return function
-		return str + "};";
+		return str + "}";
 	},
 	//general return function to facilitate returning one or more values. Return arrays if multiple
 	"return":function(args){
