@@ -131,10 +131,10 @@ var STD = {
 		return this[",infix"](" + ", args);
 	},
 	"-":function(args){
-		return this[",infix"](" + ", args);
+		return this[",infix"](" - ", args);
 	},
 	"*":function(args){
-		return this[",infix"](" + ", args);
+		return this[",infix"](" * ", args);
 	},
 	"/":function(args){
 		return this[",infix"](" / ", args);

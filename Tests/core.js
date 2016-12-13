@@ -5,7 +5,7 @@ var cmp = require("../src/compiler.js");
 var compileTest = function(code, expected, n){
 	try {
 		var result = cmp.Compile(code);
-		if (result === expected) {console.log("Test " + n +" PASSED;")} else{console.log("Test " + n +" FAILED;")};
+		if (result === expected) {console.log("Test " + n +" PASSED;")} else{console.log("Test " + n + " FAILED, result= " + result + ", expected= " + expected)};
 	}
 	catch(err){
 		console.log("Test " + n + "FAILED ERROR:" + err + ";");
