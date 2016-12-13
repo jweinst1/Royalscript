@@ -262,6 +262,25 @@ var STD = {
 		var elems = get2Args(this, args);
 		return elems[0] + ".push(" + elems[1] + ");";
 	},
+	">>":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".unshift(" + elems[1] + ");";
+	},
+	//INSERT FUNCTION works on list
+	"insert":function(args){
+		var elems = get3Args(this, args);
+		return elems[0] + ".splice(" + elems[1] + ",0," + elems[2] + ");"; 
+	},
+	//MAP FUNCTION works on list
+	"map":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".map(" + elems[1] + ")";
+	},
+	//FILTER FUNCTION WORKS ON LISTS
+	"filter":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".filter(" + elems[1] + ")";
+	},
 	//CONCAT FUNCTION works on list or strings
 	"&":function(args){
 		var elems = get2Args(this, args);
@@ -389,13 +408,25 @@ var STD = {
 	//single statement function, only takes one parameter, anonymous
 	"@":function(args){
 		var elems = get2Args(this, args);
-		return "function(" + elems[0] + "){return " + elems[1] + "};";
+		return "function(" + elems[0] + "){return " + elems[1] + "}";
+	},
+	//double parameter, single statement function, anonymous
+	"@@":function(args){
+		var elems = get3Args(this, args);
+		if(typeof elems[1] === 'object') throw "Name Error: paramter must be literal";
+		return "function(" + elems[0] +  "," + elems[1] + "){return " + elems[2] + "}";
 	},
 	//LOOPING FUNCTIONS
 	//condition loop single statement
-	"~":function(args){
+	"loop":function(args){
 		var elems = get2Args(this, args);
 		return "while(" + elems[0] + "){" + elems[1] + "};";
+	},
+	//foreach loop in array
+	//function must have one parameter but multiple statements operates on list in place
+	"for":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".forEach(" + elems[1] + ");";		
 	},
 	//STRUCT FUNCTION
 	"struct":function(args){

@@ -9,4 +9,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("&(a, 4)"));
+console.log(Compile("=(r, @@(a, b, *(a, b)))"));
