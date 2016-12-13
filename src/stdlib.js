@@ -382,8 +382,9 @@ var STD = {
 	//FUNCTION DECLARATION
 	"def":function(args){
 		var len = args.length;
+		if(args[0] in this) throw "Illegal Name Error: Cannot choose reserved function name";
 		if(typeof args[1] === 'object') throw "Name Error: function name must be literal";
-		if(args[1] !== 'args') throw "Call Error: function must be defind with params list"
+		if(args[1] !== 'args') throw "Call Error: function must be defined with args list";
 		var str = "function " + args[0] + "(" + callLib(this, args[1], args[2]) + "){";
 		for (var i = 3; i<len; i++) {
 			if(!(typeof args[i] === 'object')){
