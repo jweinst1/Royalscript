@@ -272,9 +272,16 @@ var STD = {
 		return elems[0] + ".splice(" + elems[1] + ",0," + elems[2] + ");"; 
 	},
 	//REMOVE FUNCTION works on list
+	//returns removed element
 	"remove":function(args){
 		var elems = get2Args(this, args);
 		return elems[0] + ".splice(" + elems[1] + ",1," + ");"; 		
+	},
+	//FIND FUNCTION works on lists or strings
+	//returns -1 if not found, otherwise return first index.
+	"find":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".indexOf(" + elems[1] + ")";
 	},
 	//MAP FUNCTION works on list
 	"map":function(args){
