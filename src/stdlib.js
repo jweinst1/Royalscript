@@ -196,6 +196,11 @@ var STD = {
 		var elems = get2Args(this, args);
 		return "var " + elems[0] + " = " + elems[1] + ";";
 	},
+	//SAME FUNCTION compares using JSON stringify
+	"same":function(args){
+		var elems = get2Args(this, args);
+		return "JSON.stringify(" + elems[0] + ")=== JSON.stringify(" + elems[1] + ")";
+	},
 	//collection initializers
 	"list":function(args){
 		return "[" + this[","](args) + "]";
