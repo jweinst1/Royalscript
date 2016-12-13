@@ -292,6 +292,12 @@ var STD = {
 		if(!(condmode)) str += "};";
 		return str;
 	},
+	//IS function determines if some argument is an instance of a class or type instance first, class name second
+	//returns boolean
+	"is":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + " instanceof " + elems[1];
+	},
 	//SWITCH Statement
 	//cases can be expressions or variable names, or numbers or strings
 	"switch":function(args){
