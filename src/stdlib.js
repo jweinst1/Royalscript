@@ -257,6 +257,16 @@ var STD = {
 	"rep":function(args){
 		return get1Args(this, args) + ".slice()";
 	},
+	//allows appending on the right side of the list
+	"<<":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".push(" + elems[1] + ");";
+	},
+	//CONCAT FUNCTION works on list or strings
+	"&":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".concat(" + elems[1] + ");";
+	},
 	//allows a sequence of functions to be grouped together for control flow or other purposes as a single arg.
 	"do":function(args){
 		return this[",infix"](" ", args);

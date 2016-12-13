@@ -9,4 +9,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("new(apple, +(5, -(3, 2)), 8, false)"));
+console.log(Compile("&(a, 4)"));
