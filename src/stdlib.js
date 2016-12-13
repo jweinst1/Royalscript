@@ -398,6 +398,17 @@ var STD = {
 			str2 += "this." + args[i] + " = " + args[i] + ";";
 		};
 		return str1 + args[i] + ")" + str2 + "this." + args[i] + " = " + args[i] + ";};";		
+	},
+	//NEW FUNCTION, creates struct
+	"new":function(args){
+		if(typeof args[1] === 'object') throw "Name Error: new must be called with valid struct name, not expression";
+		var str = "new " + args[0] + "(";
+		for (var i = 1; i < args.length; i++) {
+		 	if(!(typeof args[i] === 'object')){
+		 		str += callLib(this, args[i], args[i+1]) + ",";
+		 	}
+		 };
+		 return str.slice(0, -1) + ")";
 	}
 };
 
