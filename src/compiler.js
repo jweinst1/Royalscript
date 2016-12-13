@@ -10,4 +10,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("&(`1`, +(`1`, `1`))"));
+console.log(Compile("random(1, 5)"));

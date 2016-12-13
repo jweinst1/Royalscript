@@ -149,6 +149,11 @@ var STD = {
 	"**":function(args){
 		return "Math.pow(" + this[","](args) + ")";
 	},
+	//RANDOM FUNCTION gets random number in range
+	"random":function(args){
+		var elems = get2Args(this, args);
+		return "Math.floor((Math.random() * " + elems[1] +") + " + elems[0] +")";
+	},
 	//printing function
 	"$":function(args){
 		return "console.log(" + this[","](args) + ");";
