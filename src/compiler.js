@@ -10,4 +10,3 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("num(`4\n`)"))

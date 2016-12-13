@@ -144,7 +144,7 @@ var STD = {
 	},
 	//floor division, calls other function in lib
 	"//":function(args) {
-		return "Math.floor(" + this["/"](args, spacer) + ")";
+		return "Math.floor(" + this[",infix"](" / ", args) + ")";
 	},
 	"**":function(args){
 		return "Math.pow(" + this[","](args) + ")";
