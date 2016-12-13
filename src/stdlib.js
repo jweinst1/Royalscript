@@ -207,6 +207,10 @@ var STD = {
 		var elems = get2Args(this, args);
 		return "new RegExp(" + elems[1] + ").test(" + elems[0] + ")";
 	},
+	//converts string to number using double bitwise not operator gives 0 if not a string
+	"num":function(args){
+		return "(~~" + get1Args(this, args) + ")"; 
+	},
 	//collection initializers
 	"list":function(args){
 		return "[" + this[","](args) + "]";
