@@ -386,6 +386,18 @@ var STD = {
 	"~":function(args){
 		var elems = get2Args(this, args);
 		return "while(" + elems[0] + "){" + elems[1] + "};";
+	},
+	//STRUCT FUNCTION
+	"struct":function(args){
+		if(typeof args[1] === 'object') throw "Name Error: name of struct must be literal";
+		var str1 = "function " + args[0] + "(";
+		var str2 = "{";
+		for (var i = 1; i < args.length-1; i++) {
+			if(typeof args[i] === 'object') throw "Name Error: fields of struct must be literal";
+			str1 += args[i] + ", ";
+			str2 += "this." + args[i] + " = " + args[i] + ";";
+		};
+		return str1 + args[i] + ")" + str2 + "this." + args[i] + " = " + args[i] + ";};";		
 	}
 };
 
