@@ -437,6 +437,7 @@ var STD = {
 	},
 	//STRUCT FUNCTION
 	"struct":function(args){
+		if(args.length === 1) return "function " + args[0] + "(){};";
 		if(typeof args[1] === 'object') throw "Name Error: name of struct must be literal";
 		var str1 = "function " + args[0] + "(";
 		var str2 = "{";
@@ -449,6 +450,7 @@ var STD = {
 	},
 	//NEW FUNCTION, creates struct
 	"new":function(args){
+		if(args.length === 1) return "new " + args[0] + "()";
 		if(typeof args[1] === 'object') throw "Name Error: new must be called with valid struct name, not expression";
 		var str = "new " + args[0] + "(";
 		for (var i = 1; i < args.length; i++) {

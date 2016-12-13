@@ -18,3 +18,4 @@ t.compileTest("random(0, 10)", "Math.floor((Math.random() * 10) + 0)", 12);
 t.compileTest("random(0, **(1, 2, 3))", "Math.floor((Math.random() * Math.pow(1, 2, 3)) + 0)", 13);
 //newline, multistatement
 t.compileTest("+(8, 6), -(5, 3)", "8 + 6\n5 - 3", 14);
+t.compileTest("+(8, 6), **(5, 3)", "8 + 6\nMath.pow(5, 3)", 15);
