@@ -9,4 +9,4 @@ var Compile = function(code){
 
 exports.Compile = Compile;
 
-console.log(Compile("ifs(is(f, food), $(1, 2, 3), !=(x, 5), list(1, 2, 3))"));
+console.log(Compile("ife(==(3, 3), list(1, 2), is(f, food), $(1, 2, 3), !=(x, 5), list(1, 2, 3))"));

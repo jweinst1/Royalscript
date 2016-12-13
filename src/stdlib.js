@@ -319,6 +319,25 @@ var STD = {
 		if(!(casemode)) str += "break;";
 		return str + "};";
 	},
+	//IF ELSE CHAIN FUNCTION
+	"ife":function(args){
+		if(args.length < 3 || (args.length/2)%2 === 0) throw "Argument Error: Wrong number of arguments";
+		var str = "if(" + callLib(this, args[0], args[1]) + "){";
+		var condmode = false;
+		for (var i = 1; i < args.length-2; i++) {
+			if(!(typeof args[i] === 'object')){
+				if(condmode){
+					str += "else if(" + callLib(this, args[i], args[i+1]) + "){";
+					condmode = false;
+				}
+				else {
+					str += callLib(this, args[i], args[i+1]) + "};";
+					condmode = true;
+				}
+			}
+		};
+		return str + "else{" + callLib(this, args[i], args[i+1]) + "};";
+	},
 	//FUNCTION DECLARATION
 	"def":function(args){
 		var len = args.length;
