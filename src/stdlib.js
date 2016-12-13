@@ -271,6 +271,11 @@ var STD = {
 		var elems = get3Args(this, args);
 		return elems[0] + ".splice(" + elems[1] + ",0," + elems[2] + ");"; 
 	},
+	//REMOVE FUNCTION works on list
+	"remove":function(args){
+		var elems = get2Args(this, args);
+		return elems[0] + ".splice(" + elems[1] + ",1," + ");"; 		
+	},
 	//MAP FUNCTION works on list
 	"map":function(args){
 		var elems = get2Args(this, args);
