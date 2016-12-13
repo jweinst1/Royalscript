@@ -439,6 +439,7 @@ var STD = {
 	//STRUCT FUNCTION
 	"struct":function(args){
 		if(args.length === 1) return "function " + args[0] + "(){};";
+		if(args[0] in this) throw "Illegal Name Error: Cannot choose reserved function name";
 		if(typeof args[1] === 'object') throw "Name Error: name of struct must be literal";
 		var str1 = "function " + args[0] + "(";
 		var str2 = "{";
