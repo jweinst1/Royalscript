@@ -468,7 +468,7 @@ exports.STD = STD;
 
 //top level function that generates javascript
 var genCode = function(AST){ 
-	return STD[",infix"]("", AST);
+	return STD[",infix"]("\n", AST);
 };
 
 exports.genCode = genCode;
