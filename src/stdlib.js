@@ -211,6 +211,11 @@ var STD = {
 	"num":function(args){
 		return "(~~" + get1Args(this, args) + ")"; 
 	},
+	//converts anything to a string via json stringify
+	//works on structs and lists as well.
+	"str":function(args){
+		return "JSON.stringify(" + get1Args(this, args) + ")";
+	},
 	//collection initializers
 	"list":function(args){
 		return "[" + this[","](args) + "]";
