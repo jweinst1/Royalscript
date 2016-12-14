@@ -23,4 +23,7 @@ t.evalTest("for(range(0, 10), !@(i, $(i)))", undefined, 14);
 t.evalTest("=(w, 5), for(range(0, 10), !@(i, $(+(w, i))))", undefined, 15);
 t.evalTest("def(soom, args(a, b), =(a, -(a, b)), return(a, b, b)), soom(1, 7)", "[-6,7,7]", 16);
 t.evalTest("find(\n\nlist(3, 7, 8), 7)", "1", 17);
+t.evalTest("?(true\n\n\n, 5)", "5", 18);
+t.evalTest("?(true\n\n\n, ?(true, 6))", "6", 19);
+
 
