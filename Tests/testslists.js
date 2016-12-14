@@ -26,6 +26,8 @@ t.compileTest("rep(list(1, 2))", "[1, 2].slice()", 18);
 t.compileTest("cut(rep(list(1, 2, 3)), 0, 2)", "[1, 2, 3].slice().slice(0, 2)", 19);
 t.compileTest("=(a, list(4)), get(a, 0)", "var a = [4];\na[0]", 20);
 t.compileTest("=(a, list(4)), set(a, 0, 4)", "var a = [4];\na[0] = 4;", 21);
+t.compileTest("append(list(1, 2), 4)", "[1, 2].push(4);", 22);
+t.compileTest("put(list(1, 2), 4)", "[1, 2].unshift(4);", 23);
 
 
 

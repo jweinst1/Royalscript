@@ -191,6 +191,10 @@ var STD = {
 		var elems = get2Args(this, args);
 		return elems[0] + " >= " + elems[1];
 	},
+	//takes one argument but can be extended with args
+	"not":function(args){
+		return "!(" + get1Args(this, args) + ")";
+	},
 	//ASSIGNMENT function
 	"=":function(args){
 		var elems = get2Args(this, args);
