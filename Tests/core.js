@@ -14,7 +14,9 @@ var compileTest = function(code, expected, n){
 
 exports.compileTest = compileTest;
 
-var evalTest = function(code, expected, output, n){
+
+
+var evalwOutTest = function(code, expected, output, n){
 	function assist(){
 		var OUT = "";
 		console.log = function(message){
@@ -22,8 +24,8 @@ var evalTest = function(code, expected, output, n){
 		};
 		try {
 			var result = eval(cmp.Compile(code));
-			var rpass = expected === result;
-			var opass = OUT === output;
+			var rpass = (expected === result);
+			var opass = (OUT === output);
 			if(rpass && opass) return "Test " + n +" PASSED;";
 			else return "Test " + n + " FAILED, result= " + result + ", OUT= " + OUT + ";";
 		}
@@ -32,6 +34,18 @@ var evalTest = function(code, expected, output, n){
 		}
 	}
 	console.log(assist());
+};
+
+exports.evalwOutTest = evalwOutTest;
+
+var evalTest = function(code, expected, n){
+	try {
+		var result = JSON.stringify(eval(cmp.Compile(code)));
+		if (result === expected) {console.log("Test " + n +" PASSED;")} else{console.log("Test " + n + " FAILED, result= " + result + ", expected= " + expected)};
+	}
+	catch(err){
+		console.log("Test " + n + "FAILED ERROR:" + err + ";");
+	}
 };
 
 exports.evalTest = evalTest;
