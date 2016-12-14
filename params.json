@@ -1,0 +1,6 @@
+{
+  "name": "Royalscript",
+  "tagline": "A functional programming language designed for the web",
+  "body": "#RoyalScript\r\n\r\nA functional programming language for the web that's Royal!\r\n\r\n##Intro\r\n\r\nRoyalScript is a special functional programming language that transcompiles to compressed JavaScript. It's purpose is to build on the fundamentals of functional programming by adding in extendable lists, mutable data, structs, and much more. RoyalScript also emphasizes the nature of simplicity, the entire language is all functions, aside from the comments!\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
