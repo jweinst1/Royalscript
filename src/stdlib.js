@@ -203,7 +203,7 @@ var STD = {
 	//SAME FUNCTION compares using JSON stringify
 	"same":function(args){
 		var elems = get2Args(this, args);
-		return "JSON.stringify(" + elems[0] + ")=== JSON.stringify(" + elems[1] + ")";
+		return "JSON.stringify(" + elems[0] + ") === JSON.stringify(" + elems[1] + ")";
 	},
 	//MATCH FUNCTION performs regex match on left operand string
 	//returns boolean if match
@@ -304,7 +304,7 @@ var STD = {
 	},
 	//allows a sequence of functions to be grouped together for control flow or other purposes as a single arg.
 	"do":function(args){
-		return this[",infix"](" ", args);
+		return this[",infix"]("\n", args);
 	},
 	//CONDITIONALS
 	//singular Conditional function
