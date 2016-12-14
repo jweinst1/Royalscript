@@ -23,7 +23,7 @@ var evalwOutTest = function(code, expected, output, n){
 			OUT += message;
 		};
 		try {
-			var result = eval(cmp.Compile(code));
+			var result = JSON.stringify(eval(cmp.Compile(code)));
 			var rpass = (expected === result);
 			var opass = (OUT === output);
 			if(rpass && opass) return "Test " + n +" PASSED;";
