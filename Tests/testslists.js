@@ -17,5 +17,10 @@ t.compileTest("range(0, len(a))", "(function(){for(var i=0,arr = [];i<a.length;i
 t.compileTest("make(0, 10)", "(function(){for(var i=0,arr = [];i<10;i++) arr.push(0);return arr;})()", 12);
 t.compileTest("make(@(a, list(a)), 10)", "(function(){for(var i=0,arr = [];i<10;i++) arr.push(function(a){return [a]});return arr;})()", 13);
 //map and filter tests
+t.compileTest("map(list(1, 2), @(h, +(h, 2)))", "[1, 2].map(function(h){return h + 2})", 14);
+t.compileTest("filter(list(1, 2), @(h, >(h, 2)))", "[1, 2].filter(function(h){return h > 2})", 15);
+//in function
+t.compileTest("in(2, list(1, 2, 3))", "2 in [1, 2, 3]", 16);
+t.compileTest("len(list(1, 2, 3, 4))", "[1, 2, 3, 4].length", 17);
 
 
