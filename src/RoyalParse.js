@@ -30,6 +30,7 @@ var valTokens = {
 //small function to check for illegal parenthesis patterns
 function badSyntax(code){
 	if(code.search(/\)\(/) !== -1) throw "Missing Function Error";
+	else if(code.search(/\(|\)/) === -1) throw "Func Error: Must have at least one function in a RoyalScript program";
 }
 
 //main tokenizer
