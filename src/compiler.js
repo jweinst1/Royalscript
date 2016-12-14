@@ -1,4 +1,5 @@
 //main compiler file for RoyalScript
+//browser standalone is built from here
 
 var prs = require("./RoyalParse.js");
 var cmp = require("./stdlib.js");
