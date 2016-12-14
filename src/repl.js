@@ -56,12 +56,14 @@ var Repl = function(){
                     unbal = false;
                     console.log(eval(cmp.Compile(result)));
                     rl.setPrompt('Royal> ');
+                    process.exit(0);
                    }
                    else break;
                 }
                 else {
                   if(bal.isBalanced(line)){
                     console.log(eval(cmp.Compile(line)));
+                    process.exit(0);
                   }
                   else {
                     unbal = true;
