@@ -253,11 +253,11 @@ var STD = {
 		return get1Args(this, args) + ".slice()";
 	},
 	//allows appending on the right side of the list
-	"<<":function(args){
+	"append":function(args){
 		var elems = get2Args(this, args);
 		return elems[0] + ".push(" + elems[1] + ");";
 	},
-	">>":function(args){
+	"put":function(args){
 		var elems = get2Args(this, args);
 		return elems[0] + ".unshift(" + elems[1] + ");";
 	},

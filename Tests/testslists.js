@@ -22,5 +22,10 @@ t.compileTest("filter(list(1, 2), @(h, >(h, 2)))", "[1, 2].filter(function(h){re
 //in function
 t.compileTest("in(2, list(1, 2, 3))", "2 in [1, 2, 3]", 16);
 t.compileTest("len(list(1, 2, 3, 4))", "[1, 2, 3, 4].length", 17);
+t.compileTest("rep(list(1, 2))", "[1, 2].slice()", 18);
+t.compileTest("cut(rep(list(1, 2, 3)), 0, 2)", "[1, 2, 3].slice().slice(0, 2)", 19);
+t.compileTest("=(a, list(4)), get(a, 0)", "var a = [4];\na[0]", 20);
+t.compileTest("=(a, list(4)), set(a, 0, 4)", "var a = [4];\na[0] = 4;", 21);
+
 
 
