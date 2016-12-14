@@ -1,16 +1,5 @@
 ;sample RoyalScript File;
 
-=(a, 3),
-=(b, map()),
 
-~(!=(a, 10),
-    do(
-       $(3),
-       set(b, a, 4),
-       =(a, +(a, 1)) 
-    )
-),
-
-$(get(b, 4))
 
 
