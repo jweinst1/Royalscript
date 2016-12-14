@@ -18,3 +18,4 @@ t.compileTest("def(fn, args(a, b, c, d), return(-(a, b, c, d)))", "function fn(a
 //unnamed function
 t.compileTest("def(_, args(a, b, c, d), return(-(a, b, c, d)))", "function _(a, b, c, d){return a - b - c - d;}", 12);
 t.compileTest("def(_, args(a), return(-(a, 3)))", "function _(a){return a - 3;}", 13);
+t.compileTest("!@(a, $(a))", "function(a){console.log(a);}", 14);
