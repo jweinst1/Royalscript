@@ -33,10 +33,10 @@
         <a href="https://github.com/jweinst1/Royalscript" class="button fork"><strong>View On GitHub</strong></a>
         
           <div class="downloads">
-            <span>Downloads:</span>
+            <span>Push to run code:</span>
             <ul>
-              <li><a href="https://github.com/jweinst1/Royalscript/zipball/gh-pages" class="button">ZIP</a></li>
-              <li><a href="https://github.com/jweinst1/Royalscript/tarball/gh-pages" class="button">TAR</a></li>
+              <li><a onclick="window.displayRoyalResult.setValue(window.editor.evalRoyalScript(window.editor.getValue()))"  class="button">Run</a></li>
+              <li><a  class="button">Compile</a></li>
             </ul>
           </div>
         
@@ -55,7 +55,7 @@
       <textarea id="code"></textarea>
       
       
-      <textarea id="evalresult" onclick="window.displayRoyalResult.setValue(window.editor.evalRoyalScript(window.editor.getValue()))"></textarea>
+      <textarea id="evalresult"></textarea>
 
 
       </section>
