@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", function () {
         theme: "eclipse",
     });
 
-    repl.print("/* JavaScript REPL  Copyright (C) 2013  Aadit M Shah */");
+    repl.print("/*RoyalScript language by Josh Weinstein*/");
 
     window.print = function (message) {
         repl.print(message, "message");
@@ -82,10 +82,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     repl.eval = function (code) {
         try {
-            if (isExpression(code)) {
-                geval("__expression__ = " + code);
-                express(__expression__);
-            } else geval(code);
+            geval(RoyalScript.Compile(code))
         } catch (error) {
             repl.print(error, "error");
         }
