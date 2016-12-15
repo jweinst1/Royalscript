@@ -4,7 +4,9 @@
 
 ##Intro
 
-RoyalScript is a special functional programming language that transcompiles to compressed JavaScript. It's purpose is to build on the fundamentals of functional programming by adding in extendable lists, mutable data, structs, loops, and much more. You can make functions with recursion, looping, or just use a lambda. RoyalScript also emphasizes the nature of simplicity, the entire language is all functions, aside from the comments. 
+RoyalScript is a special functional programming language that transcompiles to compressed JavaScript. It's purpose is to build on the fundamentals of functional programming by adding in extendable lists, mutable data, structs, loops, and much more. You can make functions with recursion, looping, or just use a lambda. It even has a type system!
+
+RoyalScript also emphasizes the nature of simplicity, the entire language is all functions, aside from the comments. 
 
 ##Installation and Setup
 
