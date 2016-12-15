@@ -10,7 +10,7 @@ RoyalScript also emphasizes the nature of simplicity, the entire language is all
 
 ##Installation and Setup
 
-To install `RoyalScript`, you can use npm by typing the command:
+To install RoyalScript, you can use npm by typing the command:
 
 ```
 $ npm install -g pike
