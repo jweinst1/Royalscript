@@ -42,12 +42,55 @@
         <h1>
 <a id="royalscript" class="anchor" href="#royalscript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RoyalScript</h1>
 
-<p>A functional programming language for the web that's Royal!</p>
+<p><em>A functional programming language for the web that's Royal!</em></p>
 
 <h2>
 <a id="intro" class="anchor" href="#intro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Intro</h2>
 
-<p>RoyalScript is a special functional programming language that transcompiles to compressed JavaScript. It's purpose is to build on the fundamentals of functional programming by adding in extendable lists, mutable data, structs, and much more. RoyalScript also emphasizes the nature of simplicity, the entire language is all functions, aside from the comments!</p>
+<p>RoyalScript is a special functional programming language that transcompiles to compressed JavaScript. It's purpose is to build on the fundamentals of functional programming by adding in extendable lists, mutable data, structs, loops, and much more. You can make functions with recursion, looping, or just use a lambda. It even has a type system!</p>
+
+<p>RoyalScript also emphasizes the nature of simplicity, the entire language is all functions, aside from the comments. </p>
+
+<h2>
+<a id="installation-and-setup" class="anchor" href="#installation-and-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation and Setup</h2>
+
+<p>To install <code>RoyalScript</code>, you can use npm by typing the command:</p>
+
+<pre><code>$ npm install -g pike
+</code></pre>
+
+<p>RoyalScript, when run natively uses <code>.royal</code> files. To compile a RoyalScrpt file to javascript, use</p>
+
+<pre><code>royalscript -j path/to/royalscriptfile
+</code></pre>
+
+<p>This will output the transcompiled, compressed javascript in your terminal. To compile and run a royalscript file, you can use</p>
+
+<pre><code>royalscript -e path/to/royalscriptfile
+</code></pre>
+
+<h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick Start</h2>
+
+<p>You can use this small interpreter below to try <code>RoyalScript</code> out.</p>
+
+<h4>
+<a id="syntax" class="anchor" href="#syntax" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Syntax</h4>
+
+<p>In RoyalScript, all statements abide by a concise function syntax as follows</p>
+
+<pre><code>&lt;FUNCTION&gt;(&lt;ARGUMENT 1&gt;, &lt;ARGUMENT 2&gt;....)
+
+nested functions:
+
+&lt;FUNCTION 1&gt;(&lt;FUNCTION 2&gt;(&lt;ARGUEMNT 1&gt;), &lt;ARGUMENT 1&gt;....)
+
+series of functions:
+
+&lt;FUNCTION&gt;(&lt;ARGUMENT 1&gt;, &lt;ARGUMENT 2&gt;...), &lt;FUNCTION&gt;()
+</code></pre>
+
+<p>So statements or programs in Oblivion</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/jweinst1">jweinst1</a></p>
