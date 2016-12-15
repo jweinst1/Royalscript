@@ -104,3 +104,14 @@ Strings in RoyalScript are denoted by backticks `, as opposed to quotation marke
 ```
 
 When RoyalScript is evaluated in javascript after being compiled, the back ticks are switched back to javascript string markers.
+
+######Booleans
+
+Booleans are representd by true and false. Many expressions in RoyalScript evaluate to Booleans as well, such as with using the && and || (and or) functions.
+
+```
+>> &&(true, false)
+>> false
+>> ||(true, false)
+>> true
+```
