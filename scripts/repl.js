@@ -15,7 +15,6 @@ window.addEventListener("DOMContentLoaded", function () {
     repl.isBalanced = function (code) {
         var tokens = {"(":0, ")":0};
         for(var i=0;i<code.length;i++) if(code[i] in tokens) tokens[code[i]] += 1;
-        console.log(tokens);
         if(tokens["("] < tokens[")"]) { repl.print(new SyntaxError("Unexpected closing bracket: )"), "error"); return null;};
         return tokens["("] - tokens[")"] === 0;
     };
