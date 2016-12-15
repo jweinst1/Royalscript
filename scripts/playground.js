@@ -3,8 +3,18 @@ window.addEventListener("DOMContentLoaded", function () {
              mode: "scheme",
              theme: "night"
         });
+       
+       window.displayRoyalResult = CodeMirror.fromTextArea(document.getElementById("evalresult"), {
+             theme: "night",
+             readOnly: true
+        });
         
         window.editor.evalRoyalScript = function(input){
-            return input + "proc";
+            try {
+                   return JSON.stringify(eval(RoyalScript.Compile(input)));
+            }
+           catch(err) {
+                  return err;
+           }
         };
 }, false);
