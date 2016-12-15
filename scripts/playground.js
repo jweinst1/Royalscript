@@ -8,18 +8,22 @@ window.addEventListener("DOMContentLoaded", function () {
              theme: "night",
              readOnly: true
         });
-        
-        window.editor.evalRoyalScript = function(input){
-             var oldLog = console.log;
-             var OUT = "";
-             console.log = function (message) {
-                OUT += message + "\n";
+       var oldLog = console.log;
+       window.ROYALSCRIPTOUT = "";
+       console.log = function (message) {
+                window.ROAYLSCRIPTOUT += message + "\n";
                 oldLog.apply(console, arguments);
              };
+        
+        window.editor.evalRoyalScript = function(input){
+             
             try {
-                   return OUT + JSON.stringify(eval(RoyalScript.Compile(input)));
+                   var runResult = window.ROYALSCRIPTOUT + JSON.stringify(eval(RoyalScript.Compile(input)));
+                   window.ROYALSCRIPTOUT = "";
+                   return runResult;
             }
            catch(err) {
+                  window.ROYALSCRIPTOUT = "";
                   return err;
            }
         };
