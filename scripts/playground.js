@@ -8,23 +8,14 @@ window.addEventListener("DOMContentLoaded", function () {
              theme: "night",
              readOnly: true
         });
-       var oldLog = console.log;
-       window.ROYALSCRIPTOUT = "";
-       console.log = function (message) {
-                window.ROAYLSCRIPTOUT += message + "\n";
-                oldLog.apply(console, arguments);
-             };
         
         window.editor.evalRoyalScript = function(input){
              
             try {
-                   var runResult = window.ROYALSCRIPTOUT + JSON.stringify(eval(RoyalScript.Compile(input)));
-                   window.ROYALSCRIPTOUT = "";
-                   return runResult;
+                   return JSON.stringify(eval(RoyalScript.Compile(input)));
             }
            catch(err) {
-                  window.ROYALSCRIPTOUT = "";
-                  return err;
+                  return rr;
            }
         };
 }, false);
