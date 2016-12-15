@@ -118,6 +118,7 @@ var STD = {
 	},
 	//private infix joiner function
 	",infix":function(sep, args){
+		if(args.length === 0) return " ";
 		var str = callLib(this, args[0], args[1]);
 		for (var i = 1; i < args.length; i++) {
 			if(!(typeof args[i] === 'object')){

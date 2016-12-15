@@ -6,12 +6,7 @@ var cmp = require("./stdlib.js");
 
 var Compile = function(code){
 	//replaces royal string closers with javascript quotes
-	try {
-	    return cmp.genCode(prs.Parse(code)).replace(/`/g, '"');
-	}
-	catch(err){
-		return err;
-	}
+	return cmp.genCode(prs.Parse(code)).replace(/`/g, '"');
 };
 
 exports.Compile = Compile;
