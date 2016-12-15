@@ -113,12 +113,7 @@ var cmp = require("./stdlib.js");
 
 var Compile = function(code){
 	//replaces royal string closers with javascript quotes
-	try {
-	    return cmp.genCode(prs.Parse(code)).replace(/`/g, '"');
-	}
-	catch(err){
-		return err;
-	}
+	return cmp.genCode(prs.Parse(code)).replace(/`/g, '"');
 };
 
 exports.Compile = Compile;
@@ -245,6 +240,7 @@ var STD = {
 	},
 	//private infix joiner function
 	",infix":function(sep, args){
+		if(args.length === 0) return " ";
 		var str = callLib(this, args[0], args[1]);
 		for (var i = 1; i < args.length; i++) {
 			if(!(typeof args[i] === 'object')){
