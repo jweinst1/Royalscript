@@ -13,71 +13,9 @@ window.addEventListener("DOMContentLoaded", function () {
     };
 
     repl.isBalanced = function (code) {
-        var length = code.length;
-        var delimiter = '';
-        var brackets = [];
-        var matching = {
-            ')': '(',
-            ']': '[',
-            '}': '{'
-        };
-
-        for (var i = 0; i < length; i++) {
-            var char = code.charAt(i);
-
-            switch (delimiter) {
-            case "'":
-            case '"':
-            case '/':
-                switch (char) {
-                case delimiter:
-                    delimiter = "";
-                    break;
-                case "\\":
-                    i++;
-                }
-
-                break;
-            case "//":
-                if (char === "\n") delimiter = "";
-                break;
-            case "/*":
-                if (char === "*" && code.charAt(++i) === "/") delimiter = "";
-                break;
-            default:
-                switch (char) {
-                case "'":
-                case '"':
-                    delimiter = char;
-                    break;
-                case "/":
-                    var lookahead = code.charAt(++i);
-                    delimiter = char;
-
-                    switch (lookahead) {
-                    case "/":
-                    case "*":
-                        delimiter += lookahead;
-                    }
-
-                    break;
-                case "(":
-                case "[":
-                case "{":
-                    brackets.push(char);
-                    break;
-                case ")":
-                case "]":
-                case "}":
-                    if (!brackets.length || matching[char] !== brackets.pop()) {
-                        repl.print(new SyntaxError("Unexpected closing bracket: '" + char + "'"), "error");
-                        return null;
-                    }
-                }
-            }
-        }
-
-        return brackets.length ? false : true;
+        var tokens = {",":0, "(":0, ")":0};
+        for(var i=0;i<code.length;i++) if(code[i] in tokens) tokens[code[i]] += 1;
+        return 0;
     };
 
     repl.eval = function (code) {
