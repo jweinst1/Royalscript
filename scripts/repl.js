@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     var repl = new CodeMirrorREPL("repl", {
         mode: "text/plain",
-        theme: "eclipse",
+        theme: "night",
     });
 
     repl.print("/* JavaScript REPL  Copyright (C) 2013  Aadit M Shah */");
