@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     repl.eval = function (code) {
         try {
-            geval(RoyalScript.Compile(code))
+            repl.print(geval(RoyalScript.Compile(code)), "message");
         } catch (error) {
             repl.print(error, "error");
         }
