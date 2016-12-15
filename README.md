@@ -23,3 +23,7 @@ This will output the transcompiled, compressed javascript in your terminal. To c
 ```
 royalscript -e path/to/royalscriptfile
 ```
+
+##Quick Start 
+
+You can use this small
