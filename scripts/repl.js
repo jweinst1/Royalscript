@@ -20,11 +20,6 @@ window.addEventListener("DOMContentLoaded", function () {
     };
 
     repl.eval = function (code) {
-        var oldLog = console.log;
-        console.log = function (message) {
-           repl.print(message, "message");
-           oldLog.apply(console, arguments);
-        };
         try {
             repl.print(JSON.stringify(geval(RoyalScript.Compile(code))), "message");
         } catch (error) {
