@@ -10,8 +10,14 @@ window.addEventListener("DOMContentLoaded", function () {
         });
         
         window.editor.evalRoyalScript = function(input){
+             var oldLog = console.log;
+             var OUT = "";
+             console.log = function (message) {
+                OUT += message + "\n";
+                oldLog.apply(console, arguments);
+             };
             try {
-                   return JSON.stringify(eval(RoyalScript.Compile(input)));
+                   return OUT + JSON.stringify(eval(RoyalScript.Compile(input)));
             }
            catch(err) {
                   return err;
