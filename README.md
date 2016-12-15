@@ -46,4 +46,61 @@ series of functions:
 <FUNCTION>(<ARGUMENT 1>, <ARGUMENT 2>...), <FUNCTION>()
 ```
 
-So statements or programs in Oblivion
+So statements or programs in RoyalScript consist purely of functions and their arguments.
+
+####Types
+
+RoyalScript has primitive types and custom or reference types created by structs
+
+#####Primtiive Types
+
+* Number
+* String
+* Boolean
+* List(Array)
+* null
+* function
+
+Numbers represented both integers and floats, as JavaScript numbers do.
+
+To check a type in RoyalScript, you can use the type function `type()`.
+
+```
+>> type(4)
+>> 'Number'
+```
+
+######Numbers
+
+Numbers can be manipulated using RoyalScript's set of arithmetic functions as follows
+
+```
+>> +(1, 1, 1)
+>> 3
+>> -(5, 4)
+>> 1
+>> +(4, *(3, 4))
+>> 16
+>> **(2, 2)
+>> 4
+>> /(90, 90)
+>> 1
+```
+
+There is additionally a random function with produces a random number between the first and second argument
+
+```
+>> random(0, 8)
+>> 3
+```
+
+######Strings
+
+Strings in RoyalScript are denoted by backticks `, as opposed to quotation markers in other languages ". Strings can be concatenated using the + or & functions.
+
+```
+>> +(`hello`, `world`)
+>> "helloworld"
+```
+
+When RoyalScript is evaluated in javascript after being compiled, the back ticks are switched back to javascript string markers.
