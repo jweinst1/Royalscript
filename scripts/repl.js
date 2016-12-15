@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", function () {
            oldLog.apply(console, arguments);
         };
         try {
-            repl.print(geval(RoyalScript.Compile(code)), "message");
+            repl.print(JSON.stringify(geval(RoyalScript.Compile(code))), "message");
         } catch (error) {
             repl.print(error, "error");
         }
