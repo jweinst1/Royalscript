@@ -26,4 +26,22 @@ royalscript -e path/to/royalscriptfile
 
 ##Quick Start 
 
-You can use this small
+You can use this small interpreter below to try `RoyalScript` out.
+
+####Syntax
+
+In RoyalScript, all statements abide by a concise function syntax as follows
+
+```
+<FUNCTION>(<ARGUMENT 1>, <ARGUMENT 2>....)
+
+nested functions:
+
+<FUNCTION 1>(<FUNCTION 2>(<ARGUEMNT 1>), <ARGUMENT 1>....)
+
+series of functions:
+
+<FUNCTION>(<ARGUMENT 1>, <ARGUMENT 2>...), <FUNCTION>()
+```
+
+So statements or programs in Oblivion
