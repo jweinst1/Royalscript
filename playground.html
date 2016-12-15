@@ -52,6 +52,10 @@
 <p>Try out RoyalScript in the playground below, just click the run button to sea the result!</p>
        
       <textarea id="code"></textarea>
+      
+      <p>And tap the area below to see the result.</p>
+      
+      <textarea id="evalresult" onclick="this.setValue(window.editor.evalRoyalScript(window.editor.getValue()))"></textarea>
 
 
       </section>
