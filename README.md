@@ -244,4 +244,59 @@ false
 
 ### ||(...)
 
-The *||()* function is the logical OR function. It takes an arbitrary number of expressions that evaluate to booleans 
+The *||()* function is the logical OR function. It takes an arbitrary number of expressions that evaluate to booleans or boolean values themselves. If any of the arguments evaluates to true, the function will evaluate to true.
+
+```
+>> ||(==(4, 3), 5)
+5
+>> ||(==(4, 3), true)
+true
+>> ||(==(4, 3), false)
+false
+```
+
+### &&(...)
+
+The *&&()* function is the logical AND function. It takes an arbitrary number of expressions that evaluate to booleans or boolean values themselves. If all of the arguments evaluates to true, the function will evaluate to true. If one is false, it evaluates to false.
+
+```
+>> &&(true, false, true)
+false
+>> &&(==(9, 9), true, true)
+true
+>> &&(
+..   ||(==(3, 4), <=(1, 5)), true
+.. )
+true
+```
+
+###not(arg1)
+
+The *not()* function is the logical NOT function. It takes in an expression that evaluates to a boolean or a boolean itself and returns the opposite boolean to that argument
+
+```
+>> not(8)
+false
+>> not(false)
+true
+>> not(&&(true, false))
+true
+```
+
+###same(arg1, arg2)
+
+The *same()* function compares two arguments and checks if their string representation is equal to each other. This is similar to the *==()* function but this also works on lists and structs, for which the *==()* does not.
+
+
+```
+>> same(1, 2)
+false
+>> same(1, 1)
+true
+>> same(1, `1`)
+false
+>> same(list(1, 2), list(1, 2))
+true
+>> ==(list(1, 2), list(1, 2))
+false
+```
