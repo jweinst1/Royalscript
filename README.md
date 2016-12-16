@@ -32,22 +32,30 @@ So statements or programs in RoyalScript consist purely of functions and their a
 
 ##Types
 
+RoyalScript is a dynamically typed language. This means that variables do not have to be declared with a specific type
+
 ###Literal
 
-RoyalScript variables, function names, and struct names, or any name is represented as a literal. A literal is pure representation of data in UTF-8 format. 
+RoyalScript variables, function names, and struct names, or any name is represented as a literal. A literal is pure representation of data in UTF-8 format. For example,
 
-###Primtiive Types
+```
+=(a, 4)
+```
+This function binds the literal a to 4. Using a in any function call without binding it previously will throw an error.
 
-RoyalScript has primitive types and custom or reference types created by structs
+###Primtive Types
 
-
+RoyalScript has 5 primitive types
 
 * Number
 * String
 * Boolean
 * List(Array)
-* null
-* function
+* Function
 
-Numbers represented both integers and floats, as JavaScript numbers do.
+Additionally, the null type exists to represent a *none* or *void* type present in many other languages.
+
+
+
+
 
