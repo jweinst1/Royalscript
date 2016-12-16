@@ -607,6 +607,8 @@ undefined
 SyntaxError: missing ) after argument list
 ```
 
+However, this only applies to functions that expect a value. For functions that execute, like conditionals or loops, you can call un-nestable functions like *set()* in their execution spots.
+
 ###append(list, arg1)
 
 The *append()* function takes a list and another argument and places that argument at the end of the list. It, like set is a non-nestable function
@@ -691,3 +693,52 @@ undefined
 >> do(first)
 [1]
 ```
+
+##Conditional Functions
+
+RoyalScript employs several unique conditonal functions to facilitate control flow in programs.
+
+###?(arg1, arg2)
+
+The *?()* function takes one argument that is or evaluates to a boolean, and another function call of any kind. If that first argument is true, it will execute the second argument, if it's false, nothing happens. Here are some examples:
+
+```
+>> ?(true, +(3, 3))
+6
+>> ?(false, +(1, 3))
+undefined
+>> =(e, 1)
+undefined
+>> ?(>(e, 0), =(e, +(e, 2)))
+undefined
+>> do(e)
+3
+```
+
+These can also nested and called in a nest.
+
+```
+>> ?(==(3, 3),
+..     ?(>=(3, 1),
+..           list(1, 2, 3)
+..            )
+..       )
+[1,2,3]
+```
+
+###if(bool_exp, true\_call, false\_call)
+
+The *if()* function takes a boolean expression, a call/statement to execute if the expression is true, and a third parameter to execute if the expression is false. You must provide 3 arguments or else an error will be raised.
+
+```
+>> if(false, 3, 2)
+2
+>> if(==(1, 1), 3, 2)
+3
+>> if(==(1, 1),
+..      list(1, 1, 1),
+..      ?(1, $(1, 2, 3))
+..  )
+[1,1,1]
+```
+
