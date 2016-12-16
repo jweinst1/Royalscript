@@ -215,4 +215,33 @@ true
 ```
 ###>(arg1, arg2)
 
+The *>()* function, also called the greater than function compares two numbers and returns true if the left hand argument is greater than the right hand argument.
+
 ###<(arg1, arg2)
+
+The *<()* function, also called the less than function compares two numbers and returns true if the left hand argument is less than the right hand argument.
+
+###<=(arg1, arg2)
+
+The *<=()* function, also called the less than or qual to  function compares two numbers and returns true if the left hand argument is less than or equal to the right hand argument.
+
+###>=(arg1, arg2)
+
+The *>=()* function, also called the less than or qual to  function compares two numbers and returns true if the left hand argument is less than or equal to the right hand argument.
+
+Here are some examples:
+
+```
+>> <(3, 5)
+true
+>> <(3, **(2, 6))
+true
+>> ==(
+..  ==(1, 3), >(200, 4) 
+.. )
+false
+```
+
+### ||(...)
+
+The *||()* function is the logical OR function. It takes an arbitrary number of expressions that evaluate to booleans 
