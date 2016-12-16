@@ -179,3 +179,40 @@ Arithmetic functions, like all functions in RoyalScript are nestable, you can ca
 ```
 
 As demonstrated, any function, such as the *-()* can stretch across multiple lines if you so chose to do so.
+
+##Logical Functions
+
+RoyalScript defines a series of logical functions for comparing numbers, strings, and boolans. RoyalScript also provides functions to compare collections list lists or specific types like structs.
+
+Unlike the arithmetic functions, some of these functions only take 2 and only 2 arguments, otherwise throwing an error.
+
+###==(arg1, arg2)
+
+The *==()* function checks if two arguments are of the same type and same value, except for lists or structs, which will not properly compare using this function.
+
+```
+==(1, 1)
+true
+==(2, 1)
+false
+==(2, `2`)
+false
+==(2, +(2, 0))
+true
+```
+
+###!=(arg1, arg2)
+
+The *!=()* works exactly the same yet checks if two arguments are unequal to each other, or not the same type.
+
+```
+!=(1, 1)
+false
+!=(3, 3, 3)
+Argument Error: Got improper arguments but expected 2.
+!=(false, true)
+true
+```
+###>(arg1, arg2)
+
+###<(arg1, arg2)
