@@ -324,6 +324,50 @@ SyntaxError: Unexpected token %
 
 You can however reassign an existing variable. If you want to declare a variable with no actual value initially, you can assign it to *null* or *undefined*.
 
+##Grouping Functions
+
+RoyalScript has 2 special functions that are considered "grouping functions". They do not alter the behavior of their arguments, or compute them in anyway. Their purpose it to allow for arguments to other functions to be grouped to override a single argument requirement, or for executing a series of statements in the call of a single function.
+
+###do(...)
+
+The *do()* function essentially groups function calls or values togther to be executed or evaluated. It's practicularly useful for displaying a value as a result since all RoyalScript programs require at least one function:
+
+```
+>> do(6)
+6
+>> do(true)
+true
+>> do(+(2, 3))
+5
+>> do(=(r, 3), =(r, +(r, r)))
+undefined
+>> do(=(r, 3), =(r, +(r, r)), r)
+6
+```
+
+It can also be used to put multiple statements in a loop, though this will be discussed in the loops section.
+
+###args(...)
+
+The *args()* function allows the grouping of values, to be called by a function that normally only taks a specific number of arguments. The *args()* function cannot be used to call a series of functions, only to group values.
+
+##Printing
+
+When RoyalScript is run in the browser, one prints arguments by logging them to the console. When RoyalScript is run locally via the NodeJS package, it prints values directly to ther terminal.
+
+###$(...)
+
+The *$()* function prints an arbitrary number of values. Here are some examples. Note you wont see this on the playground or REPL as it will go to the console.
+
+```
+>> $(1)
+1
+undefined
+>> $(1, 2, 3)
+1 2 3
+undefined
+```
+
 ##String Functions
 
 Strings in RoyalScript are types that represent a series of characters or bytes for textual data. They are immutable, but have a series of functions they can be used with for meaningful computation.
@@ -574,4 +618,13 @@ undefined
 1
 >> do(r)
 [4]
+```
+
+Even though it only takes one argument to append, it can be extended with the special grouping function called *args()*:
+
+```
+>> append(r, args(1, 2, 3))
+4
+>> do(r)
+[4,1,2,3]
 ```
