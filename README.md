@@ -786,5 +786,52 @@ The *switch()* function in RoyalScript facilitates pattern matching, its similar
 The switch statements do not fall through between each case pair, meaning the first case that matches will executes, terminating the progression to further cases. There is also no default block for RoyalScript switch statements.
 
 ```
+>> =(e, `foobar`)
+undefined
+>> switch(e, 
+..   0, `good`,
+..   `bar`, 5,
+..    `foobar`, list(1, 2, 3),
+..    1, `r`
+..  )
+[1,2,3]
 
 ```
+
+##Procs(1 or 2 argument functions)
+
+RoyalScript has both general, full length functions that can be defined, but it also has smaller, anonymously created functions called Procs. They are similar to lambdas in other languages. 
+
+###@(parameter, call\_exp)
+
+The *@()* function creates and evaluates to an unnamed, one argument function with only a single execution statement. These are very useful for loops and quick, small areas you need to update values and compute values.
+
+```
+>> =(e, @(first, +(first, 3)))
+undefined
+>> e(3)
+6
+>> e(8)
+11
+>> =(e, @(first, +(first, 3), -(first, 3)))
+Argument Error: Got improper arguments but expected 2.
+```
+
+Procs made with *@()* always return their statement, so you do not need to specify a *return()* function.
+
+Because there first statement is returned, you cannot extend them with *do()*.
+
+###@@(param1, param2, call\_exp)
+
+The *@@()* works identically to the *@()* except that it evaluates to a proc the has two parameters and returns its only execution statement.
+
+```
+>> =(add, @@(a, b, +(a, b)))
+undefined
+>> add(1, 2)
+3
+>> add(1, add(1, 3))
+5
+```
+
+Double parameter procs can also be nested.
