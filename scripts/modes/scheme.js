@@ -26,8 +26,8 @@ CodeMirror.defineMode("scheme", function () {
         return obj;
     }
 
-    var keywords = makeKeywords("def same put append list range ifs if ife switch return + - * / // ** not for loop @ @@");
-    var indentKeys = makeKeywords("def let letrec let* lambda");
+    var keywords = makeKeywords("def same put append list range ifs if ife switch return + - * / // % ** random not for loop @ @@ !@ ? = == != > < <= >= ~ num str get set in len cut rep insert remove find map filter make & do is args struct new type");
+    var indentKeys = makeKeywords("def");
 
     function stateStack(indent, type, prev) { // represents a state stack object
         this.indent = indent;
@@ -93,7 +93,7 @@ CodeMirror.defineMode("scheme", function () {
                 case "string": // multi-line string parsing mode
                     var next, escaped = false;
                     while ((next = stream.next()) != null) {
-                        if (next == "\"" && !escaped) {
+                        if (next == "\`" && !escaped) {
 
                             state.mode = false;
                             break;
@@ -128,7 +128,7 @@ CodeMirror.defineMode("scheme", function () {
                 default: // default parsing mode
                     var ch = stream.next();
 
-                    if (ch == "\"") {
+                    if (ch == "\`") {
                         state.mode = "string";
                         returnType = STRING;
 
