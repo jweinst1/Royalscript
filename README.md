@@ -768,10 +768,23 @@ undefined
 The *ife()* function works similarly to the *ifs()* function except it executes one and only one statement. Meaning, it will go through each boolean expression, checking if it is true, and if it is, will execute that statement and stop looking through the other pairs. If none of the pairs are true, it executes the else call.
 
 ```
-ife(
-   >(len(lst), 2), put(lst, true),
-   ==(len(lst), 0), append(lst, list(2)),
-   !=(len(lst), 0), append(lst, 3),
-   $(`all false`)
-  )
+>> =(lst, list())
+>> ife(
+..   >(len(lst), 2), put(lst, true),
+..   ==(len(lst), 0), append(lst, list(2)),
+..   !=(len(lst), 0), append(lst, 3),
+..   $(`all false`)
+..  )
+>> do(lst)
+[[2]]
+```
+
+###switch([value], case, call\_exp...)
+
+The *switch()* function in RoyalScript facilitates pattern matching, its similar to a series of *==()* functions, but is faster, especcially for numbers.
+
+The switch statements do not fall through between each case pair, meaning the first case that matches will executes, terminating the progression to further cases. There is also no default block for RoyalScript switch statements.
+
+```
+
 ```

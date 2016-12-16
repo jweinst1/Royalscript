@@ -479,12 +479,12 @@ var STD = {
 					casemode = false;
 				}
 				else {
-					str += callLib(this, args[i], args[i+1]) + "break;";
+					str += callLib(this, args[i], args[i+1]) + ";break;";
 					casemode = true;
 				}
 			}
 		};
-		if(!(casemode)) str += "break;";
+		if(!(casemode)) str += ";break;";
 		return str + "};";
 	},
 	//IF ELSE CHAIN FUNCTION
