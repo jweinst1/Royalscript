@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
        window.editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-             mode: "scheme",
+             mode: "royalscript",
              theme: "night"
         });
        
