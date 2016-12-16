@@ -742,3 +742,21 @@ The *if()* function takes a boolean expression, a call/statement to execute if t
 [1,1,1]
 ```
 
+###ifs(bool_exp, true\_call...)
+
+The *ifs()* function takes a series of arguments that go by the pattern of one bool expression and one execution to process. The list of arguments should thus be even. This function will execute every statement that has a boolean expression that evaluates to true. Every boolean expression that does not evaluate to true will not be executed.
+
+
+```
+>> =(d, 33)
+undefined
+>> ifs(
+..   ==(d, 32), 5,
+..   ==(d, 33), $(4),
+..   >(d, 10), =(d, +(d, 1))
+.. )
+4
+undefined
+>> do(d)
+34
+```
