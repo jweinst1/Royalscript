@@ -652,3 +652,42 @@ undefined
 >> do(a)
 [1,true,2,3]
 ```
+
+###remove(list, index)
+
+Takes a list and a number index, to remove the value at that index and also return it in a new list of it's own. Is nestable.
+
+```
+>> =(a, list(1, 2, 34))
+undefined
+>> remove(a, 1)
+[2]
+>> do(a)
+[1,34]
+```
+
+###find(list, arg1)
+
+Takes a list and one othr argument, and checks if the argument is a value in the list. If it is, it will return the first index of it recurring. Otherwise, it will return -1. Cannot be extended with *args()*.
+
+```
+>> =(a, list(1, 2, true, false, true))
+undefined
+>> find(a, true)
+2
+>> find(a, 3)
+-1
+```
+
+###&(list1, list2)
+
+The *&()* function takes two lists as arguments and fuses them together and returns a new list. Cannot be extended with *args()*.
+
+```
+>> =(first, list(1))
+undefined
+>> &(first, list(4))
+[1,4]
+>> do(first)
+[1]
+```
