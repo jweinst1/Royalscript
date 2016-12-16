@@ -15,7 +15,7 @@
 })(function(CodeMirror) {
 "use strict";
 
-CodeMirror.defineMode("scheme", function () {
+CodeMirror.defineMode("royalscript", function () {
     var BUILTIN = "builtin", COMMENT = "comment", STRING = "string",
         ATOM = "atom", NUMBER = "number", BRACKET = "bracket";
     var INDENT_WORD_SKIP = 2;
@@ -26,7 +26,7 @@ CodeMirror.defineMode("scheme", function () {
         return obj;
     }
 
-    var keywords = makeKeywords("def same put append list range ifs if ife switch return + - * / // % ** random not for loop @ @@ !@ ? = == != > < <= >= ~ num str get set in len cut rep insert remove find map filter make & do is args struct new type");
+    var keywords = makeKeywords("def same put append list range ifs if ife switch return + - * / // % ** random not for loop @ @@ $ !@ ? = == != > < <= >= ~ num str get set in len cut rep insert remove find map filter make & do is args struct new type");
     var indentKeys = makeKeywords("def");
 
     function stateStack(indent, type, prev) { // represents a state stack object
@@ -244,6 +244,6 @@ CodeMirror.defineMode("scheme", function () {
     };
 });
 
-CodeMirror.defineMIME("text/x-scheme", "scheme");
+CodeMirror.defineMIME("text/x-royalscript", "royalscript");
 
 });
