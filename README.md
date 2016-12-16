@@ -405,3 +405,173 @@ The *cut()* function takes a string, a starting index, and ending index and retu
 >> cut(`abcdefgh`, 0, -4)
 "abcd"
 ```
+
+###find(string, substr)
+
+The *find()* function takes a string and substr argument(a string smaller than the first argument), and checks if that substr is in the first argument. If it is, it returns the starting index for it. If it's not in the string, it returns -1.
+
+```
+>> find(`appleswafflesavocadoes`, `waffles`)
+6
+>> find(`appleswafflesavocadoes`, `apples`)
+0
+>> find(`appleswafflesavocadoes`, `fruits`)
+-1
+```
+
+###~(string, regex)
+
+The *~()* function takes a string argument and a string that represents a regex pattern and perfroms a regex match. It returns true or false if the string is a match or not.
+
+```
+>> ~(`hello world!`, `.*`)
+true
+>> ~(`hello world!`, `.`)
+true
+>> ~(`hello world!`, `^.$`)
+false
+>> ~(`hello world!`, `^[a-z !]+$`)
+true
+>> ~(`hello world!`, `^[a-z]+$`)
+false
+
+```
+
+##List Functions
+
+RoyalScript, unlike other functional languages employes the use of mutablee data. One feature of mutable data are lists. Lists are ordered, indexable, collections of multiple types of values.
+
+However, the language allows you to use lists in an immutable fashion as well, which will be explained below.
+
+###list(...)
+
+the *list()* function takes an arbitrary number of arguments and returns a list of those arguments. If no arguments are specified, it returns an empty list. Lists can also be nested
+
+```
+>> list(1, 2, 3)
+[1,2,3]
+>> list(1, 2, +(3, 4))
+[1,2,7]
+>> list(1, true, +(3, 4))
+[1,true,7]
+>> list(list(3, list()))
+[[3,[]]]
+```
+
+###range(start, end)
+
+The *range()* function creates a list of numbers that start at some value and end at some high value. The start number must be lower than the end number.
+
+```
+>> range(0, 5)
+[0,1,2,3,4]
+>> range(0, 10)
+[0,1,2,3,4,5,6,7,8,9]
+>> range(0, 0)
+[]
+```
+Ranges can also be used to check if a number is in the indexes of some list.
+
+```
+>> in(1, range(0, 5))
+true
+```
+Note though, the *in()* function checkes the keys of a list, not it's values. To find if a value is in a list, use the *find()* function.
+
+###make(arg1, amount)
+
+The *make()* function takes one argument and a number, to return a list containing the first argument repeated some specified number of times. This function must have 2 arguments otherwise an error is raised.
+
+```
+>> make(true, 5)
+[true,true,true,true,true]
+>> make(null, 5)
+[null,null,null,null,null]
+>> make(0, 50)
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+>> make(1)
+Argument Error: Got improper arguments but expected 2.
+```
+
+###rep(list)
+
+The *rep()* function takes a list as an argument and returns a copy of that list. This means that changes to this copy wont effect the previous list. Here is a little example for this behavior.
+
+```
+>> =(a, list(1, 2,3))
+undefined
+>> =(b, rep(a))
+undefined
+>> do(a)
+[1,2,3]
+>> do(b)
+[1,2,3]
+>> put(b, 1)
+4
+>> do(b)
+[1,1,2,3]
+>> do(a)
+[1,2,3]
+```
+
+The rep function is useful for using lists in an immutable fashion. There are also other list functions that return a new copy of the list.
+
+###len(list)
+
+Returns the amount of items in the list.
+
+###cut(list, start, end)
+
+Identical functionality to *cut()* being used on strings, returns a smaller list of the items between the specified start and end index.
+
+###get(list, index)
+
+The *get()* function, much like for strings, takes a list and index arguments, and returns the item in the list present at that index.
+
+```
+>> =(a, list(1, 2,3))
+undefined
+>> get(a, 1)
+2
+>> get(a, 0)
+1
+>> get(a, 6)
+undefined
+```
+
+###set(list, index, value)
+
+The *set()* function takes a list, a number index, and a value to set the index of the list equal to the value. Setting the value of an index beyond the length of the list still works, and the values in between will be set to *null*.
+
+```
+>> =(e, range(0, 5))
+undefined
+>> set(e, 2, 60)
+60
+>> do(e)
+[0,1,60,3,4]
+>> set(e, 10, 60)
+60
+>> do(e)
+[0,1,60,3,4,null,null,null,null,null,60]
+```
+
+**warning**: To prevent unintended behavior, *set()*, and a few other functions in RoyalScript are considered non-nestable. This means since they aren't meant to evaluate to something, you cannot use them as arguments to other functions, such as:
+
+```
+>> str(set(e, 10, 60))
+SyntaxError: missing ) after argument list
+```
+
+###append(list, arg1)
+
+The *append()* function takes a list and another argument and places that argument at the end of the list. It, like set is a non-nestable function
+
+```
+>> =(r, list())
+undefined
+>> append(r, 4)
+1
+>> do(r)
+[4]
+```
