@@ -32,7 +32,9 @@ So statements or programs in RoyalScript consist purely of functions and their a
 
 ##Types
 
-RoyalScript is a dynamically typed language. This means that variables do not have to be declared with a specific type
+RoyalScript is a dynamically typed language. This means that variables do not have to be declared with a specific type, nor do functions need specified paramater or return types.
+
+However, one of the goals of RoyalScript is to provide a stronger type system than JavaScript or other functional languages with the type and is functions, and the struct system RoyalScript has. 
 
 ###Literal
 
@@ -55,7 +57,125 @@ RoyalScript has 5 primitive types
 
 Additionally, the null type exists to represent a *none* or *void* type present in many other languages.
 
+Strings in RoyalScript are implemented with backtick barriers, \`, as opposed to quotes \" with most languages. This is primarily due to the optimized method of parsing RoyalScript, which will be explained in another section.
 
+###Struct Type
 
+RoyalScript structs, grouped fields of data, create a new type for every different struct that is named and declared. These can be checked using the *type()* and *is()* functions, which are covered in more detail later.
 
+##Arithmetic Functions
 
+RoyalScript has several arithmetic functions that are used to perform such operations on numbers. RoyalScript numbers are identical to JavaScript numbers which represent both integers and floats.
+
+###+(...)
+
+The *+()* function adds an arbitrary number of arguments together. These can be numbers, or strings, which will be concatenated instead.
+
+```
+>> +(4, 4)
+>> 8
+>> +(1, 3, 2)
+>> 6
+>> +(`hello`, ` `, `world!`)
+>> "hello world!"
+```
+
+RoyalScript does not allow trailing commas in function calls:
+
+```
+>> +(8, 7, )
+>> SyntaxError
+```
+
+RoyalScript will coerce a number to a string type if they are both calld by the *+()* function.
+
+```
+>> +(100, `k`)
+>> "100k"
+```
+
+###-(...)
+
+The *-()* function subtracts an arbitrary number of integers. It is associative to the left most argument, meaning:
+
+```
+>> -(1, 1, 1)
+>> -1
+>> -(1, -1)
+>> 2
+```
+
+###\*(...)
+
+The *\*()* function multiplies an arbitrary number of integers. It is associative to the left most argument, meaning:
+
+```
+>> *(1, -1, 1)
+>> -1
+>> *(10, 2)
+>> 20
+```
+###/(...)
+
+The */()* function divides an arbitrary number of integers. It is left associative.
+
+```
+>> /(3, 5)
+>> 0.6
+>> /(3, 10)
+>> 0.3
+>> /(3, 11)
+>> 0.2727272727272727
+```
+
+###//(...)
+
+The *//()* function uses floor divsion, by rounding the result to the next lowest integer, on an arbitrary amount of numbers. It is left associative
+
+```
+>> //(1, 2)
+>> 0
+>> //(1, 10)
+>> 0
+>> //(55, 10)
+>> 5
+
+```
+
+###%(...)
+
+The *%()* function takes the remainder of an arbitrary amount of numbers. It is also left associative.
+
+```
+%(8, 3)
+2
+%(8, 1)
+0
+%(44, 8)
+4
+```
+###\*\*(...)
+
+The *\*\*()* function, called the exponent function raises some left hand number to the power of the right hand number.
+
+```
+**(2, 2)
+4
+```
+
+###Nested Expressions
+
+Arithmetic functions, like all functions in RoyalScript are nestable, you can call functions within functions to make for more powerful computability. See these examples:
+
+```
+>> +(4, -(2, 3), *(8, 8))
+67
+>> -(3,
+..    +(3, 2)
+.. )
+2
+>> **(2, %(3, 3))
+1
+```
+
+As demonstrated, any function, such as the *-()* can stretch across multiple lines if you so chose to do so.
