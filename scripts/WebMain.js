@@ -499,7 +499,7 @@ var STD = {
 					condmode = false;
 				}
 				else {
-					str += callLib(this, args[i], args[i+1]) + "};";
+					str += callLib(this, args[i], args[i+1]) + "}";
 					condmode = true;
 				}
 			}
