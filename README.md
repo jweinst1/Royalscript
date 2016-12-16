@@ -366,3 +366,42 @@ The *num()* function takes one string argument and converts it to a number.
 >> num(str(4))
 4
 ```
+
+###get(string, index)
+
+The get function, which works for structs and lists as well, takes a string argument and index argument (must be a number for strings) and returns the one character string present at the index. Like other languages, strings are 0-indexed. If the index is out of range, the function evaluates to *undefined*. This behavior can be handled via conditionals which is in a later section.
+
+```
+>> =(s, `foo`)
+undefined
+>> get(s, 1)
+"o"
+>> get(s, 0)
+"f"
+>> get(s, 7)
+undefined
+```
+
+###len(string)
+
+The *len()* function gets the length of the string in terms of the number of characters in it.
+
+```
+>> len(`foo`)
+3
+```
+
+###cut(string, start, end)
+
+The *cut()* function takes a string, a starting index, and ending index and returns a substring or slice of a string between those indexes. The ending parameter can also be a negative number to specify a reverse index from the end of the string.
+
+```
+>> cut(`abcdefgh`, 0, 4)
+"abcd"
+>> cut(`abcdefgh`, 0, 2)
+"ab"
+>> cut(`abcdefgh`, 0, -1)
+"abcdefg"
+>> cut(`abcdefgh`, 0, -4)
+"abcd"
+```
