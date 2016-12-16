@@ -643,3 +643,12 @@ undefined
 ###insert(list, index, value)
 
 The *insert()* function takes a list, a number index, and a value, to insert that value at that index, while moving all other values one over to accomodate for the new value. It is non-nestable
+
+```
+>> =(a, list(1, 2, 3))
+undefined
+>> insert(a, 1, true)
+[]
+>> do(a)
+[1,true,2,3]
+```
