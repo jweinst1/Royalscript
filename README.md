@@ -300,3 +300,69 @@ true
 >> ==(list(1, 2), list(1, 2))
 false
 ```
+
+##Variables
+
+In RoyalScript, variables are assigned to literals using the *=()* function. You can only assign one variable in each call to the function. You can use any variable name that starts with a letter, *$*, or *_*, and has the same characters or digits after that. For example:
+
+```
+>> =(r, 3)
+undefined
+>> do(r)
+3
+>> =(r,e,3)
+Argument Error: Got improper arguments but expected 2.
+>> =(r,2)
+undefined
+>> do(r)
+2
+>> =($$$$, 1000000)
+undefined
+>> =(%%%, `this is a bad variable name`)
+SyntaxError: Unexpected token %
+```
+
+You can however reassign an existing variable. If you want to declare a variable with no actual value initially, you can assign it to *null* or *undefined*.
+
+##String Functions
+
+Strings in RoyalScript are types that represent a series of characters or bytes for textual data. They are immutable, but have a series of functions they can be used with for meaningful computation.
+
+**Warning**: Strings in RoyalScript cannot contain newlines, otherwise an error will be raised.
+
+###&(arg1, arg2)
+
+The *&()* function takes two string or list operands (also works on lists) and concats them, returning or evaluating to a new string or list.
+
+```
+>> &(`h`, `e`)
+"he"
+>> &(`1`, `2`, `3`)
+Argument Error: Got improper arguments but expected 2.
+>> &(`12`)
+Argument Error: Got improper arguments but expected 2.
+```
+
+###str(arg1)
+
+The *str()* function converts a number or an expression that evaluates to a number to a string.
+
+```
+>> str(4)
+"4"
+>> str(+(1, 2, 3, 4))
+"10"
+>> str(+(1, 2, 3, 4), 3)
+Argument Error: Got improper arguments but expected 1.
+```
+
+###num(arg1)
+
+The *num()* function takes one string argument and converts it to a number.
+
+```
+>> num(`4`)
+4
+>> num(str(4))
+4
+```
