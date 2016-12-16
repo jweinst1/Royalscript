@@ -746,6 +746,8 @@ The *if()* function takes a boolean expression, a call/statement to execute if t
 
 The *ifs()* function takes a series of arguments that go by the pattern of one bool expression and one execution to process. The list of arguments should thus be even. This function will execute every statement that has a boolean expression that evaluates to true. Every boolean expression that does not evaluate to true will not be executed.
 
+The *ifs()* is meant to act as an advanced switch statement that works on boolean expressions as opposed to pure pattern matching.
+
 
 ```
 >> =(d, 33)
@@ -759,4 +761,17 @@ undefined
 undefined
 >> do(d)
 34
+```
+
+###ife(bool_exp, true\_call..., else\_call)
+
+The *ife()* function works similarly to the *ifs()* function except it executes one and only one statement. Meaning, it will go through each boolean expression, checking if it is true, and if it is, will execute that statement and stop looking through the other pairs. If none of the pairs are true, it executes the else call.
+
+```
+ife(
+   >(len(lst), 2), put(lst, true),
+   ==(len(lst), 0), append(lst, list(2)),
+   !=(len(lst), 0), append(lst, 3),
+   $(`all false`)
+  )
 ```
