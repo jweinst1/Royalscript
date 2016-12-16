@@ -628,3 +628,18 @@ Even though it only takes one argument to append, it can be extended with the sp
 >> do(r)
 [4,1,2,3]
 ```
+
+###put(list, arg1)
+
+The *put()* functin appends one argument, to the left or beginning of a list. It can be extended with *args()*. It is non-nestable.
+
+```
+>> =(a, range(0, 7))
+undefined
+>> put(a, 4), do(a)
+[4,0,1,2,3,4,5,6]
+```
+
+###insert(list, index, value)
+
+The *insert()* function takes a list, a number index, and a value, to insert that value at that index, while moving all other values one over to accomodate for the new value. It is non-nestable
