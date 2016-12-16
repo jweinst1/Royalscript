@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function () {
                    return JSON.stringify(eval(RoyalScript.Compile(input)));
             }
            catch(err) {
-                  return err;
+                  return err.toString();
            }
         };
 }, false);
