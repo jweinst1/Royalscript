@@ -314,6 +314,15 @@ true
 false
 ```
 
+###random(arg1, arg2)
+
+The *random()* function takes two numbers as arguments, and returns a random number between the arguments.
+
+```
+>> random(1, 90)
+67
+```
+
 ##Variables
 
 In RoyalScript, variables are assigned to literals using the *=()* function. You can only assign one variable in each call to the function. You can use any variable name that starts with a letter, *$*, or *_*, and has the same characters or digits after that. For example:
@@ -973,6 +982,171 @@ map(range(0, 10),
 
 The *filter()* function in RoyalScript takes a list and a function or proc that takes one argument and returns a boolean value. It goes through a list, and checks if eahc value returns true or false from the proc or function. It then returns a new list for all the values that made the function or proc return true.
 
-```
+This is a program that filters a list for only the even numbers.
 
 ```
+filter(range(0, 20),
+            @(item, ==(0, %(item, 2)))
+            )
+;[0,2,4,6,8,10,12,14,16,18];
+```
+
+To make these more powerful, you can also chain map and filter calls to make a list comprehension function.
+
+```
+map(
+    filter(
+           range(0, 20), 
+           @(item, ==(0, %(item, 2)))),
+    @(elem, //(elem, 3))
+    )
+
+;[0,0,1,2,2,3,4,4,5,6];
+```
+This is a chain using the previous filter and mapping that list to a new list with all the elements in the previous list floor divided by 3.
+
+##Defining Functions
+
+RoyalScript allows you to define your own full size functions, which take any amount of parameters and have any amount of statements you want. RoyalScript also uses a special function, *return()*, which allows you to return nothing, one value, or multiple values in a list.
+
+###def(name, args\_exp, call\_exp...)
+
+The *def()* function is the function which defines new named functions. Functions are much more flexible and powerful than procs, because they are named, they can have any amount of parameters, any amount of call expressions, and either return a value, or not, or have multiple return statements in different parts of the function, such as with control flow.
+
+This is a simple function with calculates the factorial of some number recursively.
+
+```
+def(factorial,
+    args(n),
+    if(==(n, 1),
+         return(1),
+         return(
+                *(n, factorial(-(n, 1)))
+                )
+         )
+    )
+,do(factorial(5))
+;120;
+```
+
+You can also define functions with no parameters:
+
+```
+def(noparams,
+    args(),
+    return(true, true)
+    )
+, do(noparams())
+;[true,true];
+```
+
+However, you can't define a function that is already a standard library function in RoyalScript.
+
+```
+def(range,
+    args(),
+    return(list())
+    )
+, do(noparams())
+;Illegal Name Error: Cannot choose reserved function name;
+```
+
+You can also use a _ if you are using a function for a loop or map or filter that you don't need the name of.
+
+Here is an example using a larger function for mapping
+
+```
+map(range(0, 10),
+         def(_, args(a),
+                ;prints the value to console;
+                $(a),
+                return(a, +(a, 1))
+                )
+         )
+;1
+2
+3
+4
+5
+6
+7
+8
+9;
+;[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]];
+```
+
+##Structs
+
+Perhaps the most unique feature to RoyalScript are structs. Structs are groups of data fields that don't have a specified type in each field, but are named. They are mutable, and can be passed around as references between functions. You create structs with the *new()* function. Every struct also has it's own type callable with the *type()* function.
+
+###struct(name, field...)
+
+The *struct()* function defines a new struct that can be initialized. Each struct can have any amount of fields. You don't have to initialize a struct with all it's field called either. However, like the defined functions you cannot use a name that is already taken by a native RoyalScript function.
+
+```
+struct(food,
+       calories, protein, fat, carbs
+       ),
+new(food, 100, `5g`, `1g`, `10g`)
+
+;{"calories":100,"protein":"5g","fat":"1g","carbs":"10g"};
+```
+
+Or with no fields argued.
+
+```
+struct(food,
+       calories, protein, fat, carbs
+       ),
+new(food),
+;{};
+```
+
+You can also put procs or functions on a struct:
+
+```
+struct(bank,
+       deposit, balance
+       ),
+=(a, new(bank, @(a, a), 50)),
+do(
+   get(a, `balance`)
+   )
+;50;
+```
+
+###new(name, arg...)
+
+The *new()* function creates a new instance of a struct. You must use a previously defined struct, as RoyalScript does not support generic objects or keyed-value collections. Lists can accept a string as a key, but this behavior is not recommended or type/method safe.
+
+You can also have functions return new instances of structs
+
+```
+def(factory,
+    args(amount, size),
+    struct(machine, size, built),
+    return(
+           make(new(machine, size, true), amount)
+           )
+    ),
+factory(5)
+;[{"built":true},{"built":true},{"built":true},{"built":true},{"built":true}];
+```
+
+###type(struct_instance)
+
+The *type()* function checks the type of some struct instantance, returning it as a string value.
+
+```
+struct(bank,
+       deposit, balance
+       ),
+=(a, new(bank, @(a, a), 50)),
+type(a)
+;"bank";
+```
+
+Another technique is also to use a switch statement with the type function called on some argument, so you can handle different types of structs much quicker and faster.
+
+**Warning**: It's recommended not to use the *type()* function on primtive types in RoyalScript, such as lists or numbers, because primitive types do not have constructors like structs do.
+
