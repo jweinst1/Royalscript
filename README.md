@@ -9,6 +9,8 @@
 
 [Website](https://jweinst1.github.io/Royalscript/)
 
+[NPM](https://www.npmjs.com/package/royalscript)
+
 
 
 ##Intro
