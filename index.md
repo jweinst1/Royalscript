@@ -1,3 +1,8 @@
+
+![RoyalScriptLogo](https://github.com/jweinst1/Royalscript/blob/gh-pages/images/crown-png-4.png)
+
+##RoyalScript
+
 RoyalScript is a functional programming language with modern features and syntax. Sick of scheme lists? RoyalScript has pythonic lists and function calls. 
 
 What can you do with RoyalScript?
