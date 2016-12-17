@@ -884,6 +884,95 @@ undefined
 [3,2,1]
 ```
 
-#Loop Functions
+##Loop Functions
 
-Unlike other functional programming languages, RoyalScript incorporates
+Unlike most other functional programming languages, RoyalScript has loops, a conditional loop and a for loop. These exist to add more flexibility in writing RoyalScript than purely using recursion as the primary tool of computation.
+
+###loop(bool\_exp, call\_exp)
+
+The *loop()* function in RoyalScript repeatedly calls a single statement while the boolean expression, also called a condition evaluates to true. The call expression, like that in *!@()* can be extended with the *do()* function.
+
+Here is a small, RoyalScript program that uses a loop to sum the values in a list. This is a compiled program, as opposed to the REPL used in the previous examples.
+
+```
+=(l, list(1, 2, 3)),
+=(i, 0),
+=(total, 0),
+
+loop(<(i, len(l)),
+      do(
+         =(total, +(total, get(l, i))),
+         =(i, +(i, 1))
+        )
+     ),
+do(total)
+;The result is 6;
+```
+
+###for(list, function_proc)
+
+The *for()* function in RoyalScript allows one to loop over lists, by calling some function or proc once on each item in the list. 
+
+RoyalScript uses a for every type of loop as opposed to traditional C-style type for loops because a functional programming language needs to be able to use functions more than just blocks of code in different arrays of a program. 
+
+This is a program that loops over a range and inserts the numbers greater than 3 in reverse order in a new list.
+
+```
+=(r, list()),
+
+for(range(0, 10),
+         !@( elem,
+             do(
+                ?(>(elem, 3), insert(r, 0, elem))
+                )
+             )
+         ),
+do(r)
+;[9,8,7,6,5,4];
+```
+
+You can also use functions you define yourself in for loops, which will be explained in the function section.
+
+Something important to understand is that unless directly accessing the name of a list, the for loop cannot modify the list it is iterating over. See this example:
+
+```
+=(lst, list(1, 2, 3)),
+for(lst, 
+    !@(elem, +(elem, 2))
+    )
+,do(lst)
+;[1,2,3];
+```
+
+##List Construction and Comprehension
+
+In previous examples, lists were constructed in a mutable fashion with loops or functions that had to be specified to filter and/or modify a list. In python, a popular object oriented programming language, it is possible to construct lists through the use of list comprehensions. RoyalScript implements a very similar concept through the *map()* and *filter()* functions, with even more powerful options if you chain them together.
+
+###map(list, function_proc)
+
+The *map()* function takes a list and a function or proc(cannot use !@, must return value), and returns a new list that has every element in the old list applied to it. The old list that is called with map is not changed.
+
+Here is an example using a single parameter proc that gets the squares from a range:
+
+```
+map(range(0, 10),
+         @(x, **(x, 2))
+         )
+;[0,1,4,9,16,25,36,49,64,81];
+```
+A double parameter proc, *@@()* can also be used for this:
+
+```
+map(range(0, 10),
+         @@(a, b, list(a, b))
+         )
+;[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9]];
+```
+
+###filter(list, function_proc -> Boolean)
+
+The *filter()* function in RoyalScript takes a list and a function or proc that takes one argument and returns a boolean value. It goes through a list, and checks if eahc value returns true or false from the proc or function. It then returns a new list for all the values that made the function or proc return true.
+
+```
+
+```
