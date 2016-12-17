@@ -13,7 +13,7 @@
 
 ##Intro
 
-RoyalScript is a functional programming languag that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with javascript functions. You can call native javascript functions from RoyalScirpt as well!
+RoyalScript is a functional programming language that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with javascript functions. You can call native javascript functions from RoyalScript as well!
 
 RoyalScript is a both a compiled or interpreted language, this depends on the javascript environment that RoyalScript is run in.
 
@@ -41,7 +41,7 @@ You can also use the `Main.Compile` function in your node programs.
 
 ##Computational Functions
 
-The major difference between RoyalScript and other functional languags lik Scheme is that RoyalScript functions do not *always* evaluate to some resulting value. They do not always return a value. Some functions, such as the `for` function loops over some list of values. Another example is the 
+The major difference between RoyalScript and other functional languags like Scheme is that RoyalScript functions do not *always* evaluate to some resulting value. They do not always return a value. Some functions, such as the `for` function loops over some list of values. Another example is the (Missing).
 
 RoyalScript is meant to offer more options for computation than just recursion, although recursion is definitely usable. 
 
@@ -56,7 +56,7 @@ In RoyalScript, all statements abide by a concise function syntax as follows
 
 nested functions:
 
-<FUNCTION 1>(<FUNCTION 2>(<ARGUEMNT 1>), <ARGUMENT 1>....)
+<FUNCTION 1>(<FUNCTION 2>(<ARGUMENT 1>), <ARGUMENT 1>....)
 
 series of functions:
 
@@ -92,7 +92,7 @@ RoyalScript has 5 primitive types
 
 Additionally, the null type exists to represent a *none* or *void* type present in many other languages.
 
-Strings in RoyalScript are implemented with backtick barriers, \`, as opposed to quotes \" with most languages. This is primarily due to the optimized method of parsing RoyalScript, which will be explained in another section.
+Strings in RoyalScript are implemented with backtick barriers, \`, as opposed to quotes " with most languages. This is primarily due to the optimized method of parsing RoyalScript, which will be explained in another section.
 
 ###Struct Type
 
