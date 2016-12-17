@@ -1,5 +1,7 @@
 #RoyalScript
 
+![RoyalScriptLogo](https://github.com/jweinst1/Royalscript/blob/gh-pages/images/crown-png-4.png)
+
 
 [Playground](https://jweinst1.github.io/Royalscript/playground)
 
