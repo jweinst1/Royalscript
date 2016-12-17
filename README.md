@@ -6,7 +6,6 @@
 [Playground](https://jweinst1.github.io/Royalscript/playground)
 
 [REPL](https://jweinst1.github.io/Royalscript/repl)
-[Website](https://jweinst1.github.io/Royalscript/)
 
 [Website](https://jweinst1.github.io/Royalscript/)
 
