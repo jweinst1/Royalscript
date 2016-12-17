@@ -3,7 +3,6 @@
 var cmp = require("./src/compiler.js");
 var fs = require('fs');
 var userArgs = process.argv.slice(2);
-if(userArgs.length < 2) throw "Error mode flag not specified";
 
 
 
