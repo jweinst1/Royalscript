@@ -1,10 +1,39 @@
 #RoyalScript
 
+
+[Playground](https://jweinst1.github.io/Royalscript/playground)
+
+[REPL](https://jweinst1.github.io/Royalscript/repl)
+
+
+
 ##Intro
 
 RoyalScript is a functional programming languag that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with javascript functions. You can call native javascript functions from RoyalScirpt as well!
 
 RoyalScript is a both a compiled or interpreted language, this depends on the javascript environment that RoyalScript is run in.
+
+ 
+
+##Installation and Setup
+
+To install RoyalScript, you can use npm by typing the command:
+
+```
+$ npm install -g pike
+```
+RoyalScript, when run natively uses `.royal` files. To compile a RoyalScrpt file to javascript, use
+
+```
+royalscript -j path/to/royalscriptfile
+```
+This will output the transcompiled, compressed javascript in your terminal. To compile and run a royalscript file, you can use
+
+```
+royalscript -e path/to/royalscriptfile
+```
+
+You can also use the `Main.Compile` function in your node programs.
 
 ##Computational Functions
 

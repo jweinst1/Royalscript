@@ -15,3 +15,7 @@ fs.readFile(userArgs[1], 'utf-8', function (err, data) {
     else if(userArgs[0] === '-e')console.log(eval(transcompiled));
     else throw "Error mode flag not recognized";
 });
+
+
+//exports main compiler function.
+exports.Compile = cmp.Compile;
