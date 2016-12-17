@@ -43,13 +43,13 @@
         <ul></ul>
       </nav>
       <section>
-        <p>##Intro</p>
+        <p><h2>Intro</h2></p>
 
 <p>RoyalScript is a functional programming languag that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with javascript functions. You can call native javascript functions from RoyalScirpt as well!</p>
 
 <p>RoyalScript is a both a compiled or interpreted language, this depends on the javascript environment that RoyalScript is run in.</p>
 
-<p>##Computational Functions</p>
+        <p><h2>Computational Functions</h2></p>
 
 <p>The major difference between RoyalScript and other functional languags lik Scheme is that RoyalScript functions do not <em>always</em> evaluate to some resulting value. They do not always return a value. Some functions, such as the <code class="highlighter-rouge">for</code> function loops over some list of values. Another example is the</p>
 
@@ -57,7 +57,7 @@
 
 <p>In fact, every RoyalScript program must have at least one or more functions, otherwise you will raise an error.</p>
 
-<p>##Syntax</p>
+    <p><h2>Syntax</h2></p>
 
 <p>In RoyalScript, all statements abide by a concise function syntax as follows</p>
 
@@ -76,13 +76,13 @@ series of functions:
 
 <p>So statements or programs in RoyalScript consist purely of functions and their arguments.</p>
 
-<p>##Types</p>
+  <p><h2>Types</h2></p>
 
 <p>RoyalScript is a dynamically typed language. This means that variables do not have to be declared with a specific type, nor do functions need specified paramater or return types.</p>
 
 <p>However, one of the goals of RoyalScript is to provide a stronger type system than JavaScript or other functional languages with the type and is functions, and the struct system RoyalScript has.</p>
 
-<p>###Literal</p>
+<p><h3>Literal</h3></p>
 
 <p>RoyalScript variables, function names, and struct names, or any name is represented as a literal. A literal is pure representation of data in UTF-8 format. For example,</p>
 
@@ -92,7 +92,7 @@ series of functions:
 </div>
 <p>This function binds the literal a to 4. Using a in any function call without binding it previously will throw an error.</p>
 
-<p>###Primtive Types</p>
+<p><h3>Primtive Types</h3></p>
 
 <p>RoyalScript has 5 primitive types</p>
 
@@ -108,11 +108,11 @@ series of functions:
 
 <p>Strings in RoyalScript are implemented with backtick barriers, `, as opposed to quotes " with most languages. This is primarily due to the optimized method of parsing RoyalScript, which will be explained in another section.</p>
 
-<p>###Struct Type</p>
+<p><h3>Struct Type</h3></p>
 
 <p>RoyalScript structs, grouped fields of data, create a new type for every different struct that is named and declared. These can be checked using the <em>type()</em> and <em>is()</em> functions, which are covered in more detail later.</p>
 
-<p>##Comments</p>
+<p><h2>Comments</h2></p>
 
 <p>Comments are the only feature of RoyalScript that are not functions or function calls. They are always denoted by semicolons, <em>;</em>, and can extend multiple lines or even be in the middle of code.</p>
 
@@ -124,11 +124,11 @@ series of functions:
 </code></pre>
 </div>
 
-<p>##Arithmetic Functions</p>
+<p><h2>Arithmetic Functions</h2></p>
 
 <p>RoyalScript has several arithmetic functions that are used to perform such operations on numbers. RoyalScript numbers are identical to JavaScript numbers which represent both integers and floats.</p>
 
-<p>###+(…)</p>
+<p><h3>+(…)</h3></p>
 
 <p>The <em>+()</em> function adds an arbitrary number of arguments together. These can be numbers, or strings, which will be concatenated instead.</p>
 
@@ -158,7 +158,7 @@ series of functions:
 </code></pre>
 </div>
 
-<p>###-(…)</p>
+<p><h3>-(…)</h3></p>
 
 <p>The <em>-()</em> function subtracts an arbitrary number of integers. It is associative to the left most argument, meaning:</p>
 
@@ -170,7 +170,7 @@ series of functions:
 </code></pre>
 </div>
 
-<p>###*(…)</p>
+<p><h3>*(…)</h3></p>
 
 <p>The <em>*()</em> function multiplies an arbitrary number of integers. It is associative to the left most argument, meaning:</p>
 
@@ -181,7 +181,7 @@ series of functions:
 &gt;&gt; 20
 </code></pre>
 </div>
-<p>###/(…)</p>
+<p><h3>/(…)</h3></p>
 
 <p>The <em>/()</em> function divides an arbitrary number of integers. It is left associative.</p>
 
@@ -195,7 +195,7 @@ series of functions:
 </code></pre>
 </div>
 
-<p>###//(…)</p>
+<p><h3>//(…)</h3></p>
 
 <p>The <em>//()</em> function uses floor divsion, by rounding the result to the next lowest integer, on an arbitrary amount of numbers. It is left associative</p>
 
@@ -210,7 +210,7 @@ series of functions:
 </code></pre>
 </div>
 
-<p>###%(…)</p>
+<p><h3>%(…)</h3></p>
 
 <p>The <em>%()</em> function takes the remainder of an arbitrary amount of numbers. It is also left associative.</p>
 
@@ -223,7 +223,7 @@ series of functions:
 4
 </code></pre>
 </div>
-<p>###**(…)</p>
+<p><h3>**(…)</h3></p>
 
 <p>The <em>**()</em> function, called the exponent function raises some left hand number to the power of the right hand number.</p>
 
@@ -233,7 +233,7 @@ series of functions:
 </code></pre>
 </div>
 
-<p>###Nested Expressions</p>
+<p><h3>Nested Expressions</h3></p>
 
 <p>Arithmetic functions, like all functions in RoyalScript are nestable, you can call functions within functions to make for more powerful computability. See these examples:</p>
 
@@ -251,13 +251,13 @@ series of functions:
 
 <p>As demonstrated, any function, such as the <em>-()</em> can stretch across multiple lines if you so chose to do so.</p>
 
-<p>##Logical Functions</p>
+<p><h2>Logical Functions</h2></p>
 
 <p>RoyalScript defines a series of logical functions for comparing numbers, strings, and boolans. RoyalScript also provides functions to compare collections list lists or specific types like structs.</p>
 
 <p>Unlike the arithmetic functions, some of these functions only take 2 and only 2 arguments, otherwise throwing an error.</p>
 
-<p>###==(arg1, arg2)</p>
+<p><h3>==(arg1, arg2)</h3></p>
 
 <p>The <em>==()</em> function checks if two arguments are of the same type and same value, except for lists or structs, which will not properly compare using this function.</p>
 
@@ -273,7 +273,7 @@ true
 </code></pre>
 </div>
 
-<p>###!=(arg1, arg2)</p>
+<p><h3>!=(arg1, arg2)</h3></p>
 
 <p>The <em>!=()</em> works exactly the same yet checks if two arguments are unequal to each other, or not the same type.</p>
 
@@ -286,19 +286,19 @@ Argument Error: Got improper arguments but expected 2.
 true
 </code></pre>
 </div>
-<p>###&gt;(arg1, arg2)</p>
+<p><h3>&gt;(arg1, arg2)</h3></p>
 
 <p>The <em>&gt;()</em> function, also called the greater than function compares two numbers and returns true if the left hand argument is greater than the right hand argument.</p>
 
-<p>###&lt;(arg1, arg2)</p>
+<p><h3>&lt;(arg1, arg2)</h3></p>
 
 <p>The <em>&lt;()</em> function, also called the less than function compares two numbers and returns true if the left hand argument is less than the right hand argument.</p>
 
-<p>###&lt;=(arg1, arg2)</p>
+<p><h3>&lt;=(arg1, arg2)</h3></p>
 
 <p>The <em>&lt;=()</em> function, also called the less than or qual to  function compares two numbers and returns true if the left hand argument is less than or equal to the right hand argument.</p>
 
-<p>###&gt;=(arg1, arg2)</p>
+<p><h3>&gt;=(arg1, arg2)</h3></p>
 
 <p>The <em>&gt;=()</em> function, also called the less than or qual to  function compares two numbers and returns true if the left hand argument is less than or equal to the right hand argument.</p>
 
@@ -354,7 +354,7 @@ true
 </code></pre>
 </div>
 
-<p>###not(arg1)</p>
+<p><h3>not(arg1)</h3></p>
 
 <p>The <em>not()</em> function is the logical NOT function. It takes in an expression that evaluates to a boolean or a boolean itself and returns the opposite boolean to that argument</p>
 
@@ -368,7 +368,7 @@ true
 </code></pre>
 </div>
 
-<p>###same(arg1, arg2)</p>
+<p><h3>same(arg1, arg2)</h3></p>
 
 <p>The <em>same()</em> function compares two arguments and checks if their string representation is equal to each other. This is similar to the <em>==()</em> function but this also works on lists and structs, for which the <em>==()</em> does not.</p>
 
@@ -386,7 +386,7 @@ false
 </code></pre>
 </div>
 
-<p>###random(arg1, arg2)</p>
+<p><h3>random(arg1, arg2)</h3></p>
 
 <p>The <em>random()</em> function takes two numbers as arguments, and returns a random number between the arguments.</p>
 
@@ -396,7 +396,7 @@ false
 </code></pre>
 </div>
 
-<p>##Variables</p>
+<p><h2>Variables</h2></p>
 
 <p>In RoyalScript, variables are assigned to literals using the <em>=()</em> function. You can only assign one variable in each call to the function. You can use any variable name that starts with a letter, <em>$</em>, or <em>_</em>, and has the same characters or digits after that. For example:</p>
 
@@ -420,11 +420,11 @@ SyntaxError: Unexpected token %
 
 <p>You can however reassign an existing variable. If you want to declare a variable with no actual value initially, you can assign it to <em>null</em> or <em>undefined</em>.</p>
 
-<p>##Grouping Functions</p>
+<p><h2>Grouping Functions</h2></p>
 
 <p>RoyalScript has 2 special functions that are considered “grouping functions”. They do not alter the behavior of their arguments, or compute them in anyway. Their purpose it to allow for arguments to other functions to be grouped to override a single argument requirement, or for executing a series of statements in the call of a single function.</p>
 
-<p>###do(…)</p>
+<p><h3>do(…)</h3></p>
 
 <p>The <em>do()</em> function essentially groups function calls or values togther to be executed or evaluated. It’s practicularly useful for displaying a value as a result since all RoyalScript programs require at least one function:</p>
 
@@ -444,15 +444,15 @@ undefined
 
 <p>It can also be used to put multiple statements in a loop, though this will be discussed in the loops section.</p>
 
-<p>###args(…)</p>
+<p><h3>args(…)</h3></p>
 
 <p>The <em>args()</em> function allows the grouping of values, to be called by a function that normally only taks a specific number of arguments. The <em>args()</em> function cannot be used to call a series of functions, only to group values.</p>
 
-<p>##Printing</p>
+<p><h2>Printing</h2></p>
 
 <p>When RoyalScript is run in the browser, one prints arguments by logging them to the console. When RoyalScript is run locally via the NodeJS package, it prints values directly to ther terminal.</p>
 
-<p>###$(…)</p>
+<p><h3>$(…)</h3></p>
 
 <p>The <em>$()</em> function prints an arbitrary number of values. Here are some examples. Note you wont see this on the playground or REPL as it will go to the console.</p>
 
