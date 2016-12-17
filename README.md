@@ -4,6 +4,8 @@
 
 RoyalScript is a functional programming languag that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with javascript functions. You can call native javascript functions from RoyalScirpt as well!
 
+RoyalScript is a both a compiled or interpreted language, this depends on the javascript environment that RoyalScript is run in.
+
 ##Computational Functions
 
 The major difference between RoyalScript and other functional languags lik Scheme is that RoyalScript functions do not *always* evaluate to some resulting value. They do not always return a value. Some functions, such as the `for` function loops over some list of values. Another example is the 
@@ -62,6 +64,17 @@ Strings in RoyalScript are implemented with backtick barriers, \`, as opposed to
 ###Struct Type
 
 RoyalScript structs, grouped fields of data, create a new type for every different struct that is named and declared. These can be checked using the *type()* and *is()* functions, which are covered in more detail later.
+
+##Comments
+
+Comments are the only feature of RoyalScript that are not functions or function calls. They are always denoted by semicolons, *;*, and can extend multiple lines or even be in the middle of code.
+
+```
+>> +(1, 2) ;this is a comment;
+3
+>> +(1, ;you can put them in the middle of code too; 2)
+3
+```
 
 ##Arithmetic Functions
 
@@ -835,3 +848,42 @@ undefined
 ```
 
 Double parameter procs can also be nested.
+
+###!@(parameter, call\_exp)
+
+The *!@()* function produces a proc very similarly to the *@()* function except it does not return or evaluate to any value when the proc is called. It's specifically meant to modify mutable arguments like lists or structs, or be used in a loop.
+
+```
+>> =(attach, !@(a, append(a, 3)))
+undefined
+>> =(test, make(4, 10))
+undefined
+>> attach(test)
+undefined
+>> do(test)
+[4,4,4,4,4,4,4,4,4,4,3]
+>> attach(list(1, 2 ,3))
+undefined ;does not return the list;
+```
+
+Unlike the other procs, however, *!@()* can be extended with *do()*, as in the example below
+
+```
+>> =(fnc, !@(a,
+..         do(
+..            append(a, 1),
+..            remove(a, 0),
+..            put(a, 3)
+..            )
+..          )
+..      )
+undefined
+>> =(lst, list(1, 2))
+undefined
+>> fnc(lst), do(lst)
+[3,2,1]
+```
+
+#Loop Functions
+
+Unlike other functional programming languages, RoyalScript incorporates
