@@ -466,13 +466,13 @@ undefined
 </code></pre>
 </div>
 
-<p>##String Functions</p>
+<p><h2>String Functions</h2></p>
 
 <p>Strings in RoyalScript are types that represent a series of characters or bytes for textual data. They are immutable, but have a series of functions they can be used with for meaningful computation.</p>
 
 <p><strong>Warning</strong>: Strings in RoyalScript cannot contain newlines, otherwise an error will be raised.</p>
 
-<p>###&amp;(arg1, arg2)</p>
+<p><h3>&amp;(arg1, arg2)</h3></p>
 
 <p>The <em>&amp;()</em> function takes two string or list operands (also works on lists) and concats them, returning or evaluating to a new string or list.</p>
 
@@ -486,7 +486,7 @@ Argument Error: Got improper arguments but expected 2.
 </code></pre>
 </div>
 
-<p>###str(arg1)</p>
+<p><h3>str(arg1)</h3></p>
 
 <p>The <em>str()</em> function converts a number or an expression that evaluates to a number to a string.</p>
 
@@ -500,7 +500,7 @@ Argument Error: Got improper arguments but expected 1.
 </code></pre>
 </div>
 
-<p>###num(arg1)</p>
+<p><h3>num(arg1)</h3></p>
 
 <p>The <em>num()</em> function takes one string argument and converts it to a number.</p>
 
@@ -512,7 +512,7 @@ Argument Error: Got improper arguments but expected 1.
 </code></pre>
 </div>
 
-<p>###get(string, index)</p>
+<p><h3>get(string, index)</h3></p>
 
 <p>The get function, which works for structs and lists as well, takes a string argument and index argument (must be a number for strings) and returns the one character string present at the index. Like other languages, strings are 0-indexed. If the index is out of range, the function evaluates to <em>undefined</em>. This behavior can be handled via conditionals which is in a later section.</p>
 
@@ -528,7 +528,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###len(string)</p>
+<p><h3>len(string)</h3></p>
 
 <p>The <em>len()</em> function gets the length of the string in terms of the number of characters in it.</p>
 
@@ -538,7 +538,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###cut(string, start, end)</p>
+<p><h3>cut(string, start, end)</h3></p>
 
 <p>The <em>cut()</em> function takes a string, a starting index, and ending index and returns a substring or slice of a string between those indexes. The ending parameter can also be a negative number to specify a reverse index from the end of the string.</p>
 
@@ -554,7 +554,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###find(string, substr)</p>
+<p><h3>find(string, substr)</h3></p>
 
 <p>The <em>find()</em> function takes a string and substr argument(a string smaller than the first argument), and checks if that substr is in the first argument. If it is, it returns the starting index for it. If it’s not in the string, it returns -1.</p>
 
@@ -568,7 +568,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###~(string, regex)</p>
+<p><h3>~(string, regex)</h3></p>
 
 <p>The <em>~()</em> function takes a string argument and a string that represents a regex pattern and perfroms a regex match. It returns true or false if the string is a match or not.</p>
 
@@ -587,13 +587,13 @@ false
 </code></pre>
 </div>
 
-<p>##List Functions</p>
+<p><h2>List Functions</h2></p>
 
 <p>RoyalScript, unlike other functional languages employes the use of mutablee data. One feature of mutable data are lists. Lists are ordered, indexable, collections of multiple types of values.</p>
 
 <p>However, the language allows you to use lists in an immutable fashion as well, which will be explained below.</p>
 
-<p>###list(…)</p>
+<p><h3>list(…)</h3></p>
 
 <p>the <em>list()</em> function takes an arbitrary number of arguments and returns a list of those arguments. If no arguments are specified, it returns an empty list. Lists can also be nested</p>
 
@@ -609,7 +609,7 @@ false
 </code></pre>
 </div>
 
-<p>###range(start, end)</p>
+<p><h3>range(start, end)</h3></p>
 
 <p>The <em>range()</em> function creates a list of numbers that start at some value and end at some high value. The start number must be lower than the end number.</p>
 
@@ -631,7 +631,7 @@ true
 </div>
 <p>Note though, the <em>in()</em> function checkes the keys of a list, not it’s values. To find if a value is in a list, use the <em>find()</em> function.</p>
 
-<p>###make(arg1, amount)</p>
+<p><h3>make(arg1, amount)</h3></p>
 
 <p>The <em>make()</em> function takes one argument and a number, to return a list containing the first argument repeated some specified number of times. This function must have 2 arguments otherwise an error is raised.</p>
 
@@ -647,7 +647,7 @@ Argument Error: Got improper arguments but expected 2.
 </code></pre>
 </div>
 
-<p>###rep(list)</p>
+<p><h3>rep(list)</h3></p>
 
 <p>The <em>rep()</em> function takes a list as an argument and returns a copy of that list. This means that changes to this copy wont effect the previous list. Here is a little example for this behavior.</p>
 
@@ -671,15 +671,15 @@ undefined
 
 <p>The rep function is useful for using lists in an immutable fashion. There are also other list functions that return a new copy of the list.</p>
 
-<p>###len(list)</p>
+<p><h3>len(list)</h3></p>
 
 <p>Returns the amount of items in the list.</p>
 
-<p>###cut(list, start, end)</p>
+<p><h3>cut(list, start, end)</h3></p>
 
 <p>Identical functionality to <em>cut()</em> being used on strings, returns a smaller list of the items between the specified start and end index.</p>
 
-<p>###get(list, index)</p>
+<p><h3>get(list, index)</h3></p>
 
 <p>The <em>get()</em> function, much like for strings, takes a list and index arguments, and returns the item in the list present at that index.</p>
 
@@ -695,7 +695,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###set(list, index, value)</p>
+<p><h3>set(list, index, value)</h3></p>
 
 <p>The <em>set()</em> function takes a list, a number index, and a value to set the index of the list equal to the value. Setting the value of an index beyond the length of the list still works, and the values in between will be set to <em>null</em>.</p>
 
@@ -723,7 +723,7 @@ SyntaxError: missing ) after argument list
 
 <p>However, this only applies to functions that expect a value. For functions that execute, like conditionals or loops, you can call un-nestable functions like <em>set()</em> in their execution spots.</p>
 
-<p>###append(list, arg1)</p>
+<p><h3>append(list, arg1)</h3></p>
 
 <p>The <em>append()</em> function takes a list and another argument and places that argument at the end of the list. It, like set is a non-nestable function</p>
 
@@ -747,7 +747,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###put(list, arg1)</p>
+<p><h3>put(list, arg1)</h3></p>
 
 <p>The <em>put()</em> functin appends one argument, to the left or beginning of a list. It can be extended with <em>args()</em>. It is non-nestable.</p>
 
@@ -759,7 +759,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###insert(list, index, value)</p>
+<p><h3>insert(list, index, value)</h3></p>
 
 <p>The <em>insert()</em> function takes a list, a number index, and a value, to insert that value at that index, while moving all other values one over to accomodate for the new value. It is non-nestable</p>
 
@@ -773,7 +773,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###remove(list, index)</p>
+<p><h3>remove(list, index)</h3></p>
 
 <p>Takes a list and a number index, to remove the value at that index and also return it in a new list of it’s own. Is nestable.</p>
 
@@ -787,7 +787,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###find(list, arg1)</p>
+<p><h3>find(list, arg1)</h3></p>
 
 <p>Takes a list and one othr argument, and checks if the argument is a value in the list. If it is, it will return the first index of it recurring. Otherwise, it will return -1. Cannot be extended with <em>args()</em>.</p>
 
@@ -801,7 +801,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###&amp;(list1, list2)</p>
+<p><h3>&amp;(list1, list2)</h3></p>
 
 <p>The <em>&amp;()</em> function takes two lists as arguments and fuses them together and returns a new list. Cannot be extended with <em>args()</em>.</p>
 
@@ -815,11 +815,11 @@ undefined
 </code></pre>
 </div>
 
-<p>##Conditional Functions</p>
+<p><h2>Conditional Functions</h2></p>
 
 <p>RoyalScript employs several unique conditonal functions to facilitate control flow in programs.</p>
 
-<p>###?(arg1, arg2)</p>
+<p><h3>?(arg1, arg2)</h3></p>
 
 <p>The <em>?()</em> function takes one argument that is or evaluates to a boolean, and another function call of any kind. If that first argument is true, it will execute the second argument, if it’s false, nothing happens. Here are some examples:</p>
 
@@ -849,7 +849,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###if(bool_exp, true_call, false_call)</p>
+<p><h3>if(bool_exp, true_call, false_call)</h3></p>
 
 <p>The <em>if()</em> function takes a boolean expression, a call/statement to execute if the expression is true, and a third parameter to execute if the expression is false. You must provide 3 arguments or else an error will be raised.</p>
 
@@ -866,7 +866,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###ifs(bool_exp, true_call…)</p>
+<p><h3>ifs(bool_exp, true_call…)</h3></p>
 
 <p>The <em>ifs()</em> function takes a series of arguments that go by the pattern of one bool expression and one execution to process. The list of arguments should thus be even. This function will execute every statement that has a boolean expression that evaluates to true. Every boolean expression that does not evaluate to true will not be executed.</p>
 
@@ -887,7 +887,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###ife(bool_exp, true_call…, else_call)</p>
+<p><h3>ife(bool_exp, true_call…, else_call)</h3></p>
 
 <p>The <em>ife()</em> function works similarly to the <em>ifs()</em> function except it executes one and only one statement. Meaning, it will go through each boolean expression, checking if it is true, and if it is, will execute that statement and stop looking through the other pairs. If none of the pairs are true, it executes the else call.</p>
 
@@ -904,7 +904,7 @@ undefined
 </code></pre>
 </div>
 
-<p>###switch([value], case, call_exp…)</p>
+<p><h3>switch([value], case, call_exp…)</h3></p>
 
 <p>The <em>switch()</em> function in RoyalScript facilitates pattern matching, its similar to a series of <em>==()</em> functions, but is faster, especcially for numbers.</p>
 
@@ -924,11 +924,11 @@ undefined
 </code></pre>
 </div>
 
-<p>##Procs(1 or 2 argument functions)</p>
+<p><h2>Procs(1 or 2 argument functions)</h2></p>
 
 <p>RoyalScript has both general, full length functions that can be defined, but it also has smaller, anonymously created functions called Procs. They are similar to lambdas in other languages.</p>
 
-<p>###@(parameter, call_exp)</p>
+<p><h3>@(parameter, call_exp)</h3></p>
 
 <p>The <em>@()</em> function creates and evaluates to an unnamed, one argument function with only a single execution statement. These are very useful for loops and quick, small areas you need to update values and compute values.</p>
 
@@ -948,7 +948,7 @@ Argument Error: Got improper arguments but expected 2.
 
 <p>Because there first statement is returned, you cannot extend them with <em>do()</em>.</p>
 
-<p>###@@(param1, param2, call_exp)</p>
+<p><h3>@@(param1, param2, call_exp)</h3></p>
 
 <p>The <em>@@()</em> works identically to the <em>@()</em> except that it evaluates to a proc the has two parameters and returns its only execution statement.</p>
 
@@ -964,7 +964,7 @@ undefined
 
 <p>Double parameter procs can also be nested.</p>
 
-<p>###!@(parameter, call_exp)</p>
+<p><h3>!@(parameter, call_exp)</h3></p>
 
 <p>The <em>!@()</em> function produces a proc very similarly to the <em>@()</em> function except it does not return or evaluate to any value when the proc is called. It’s specifically meant to modify mutable arguments like lists or structs, or be used in a loop.</p>
 
@@ -1001,11 +1001,11 @@ undefined
 </code></pre>
 </div>
 
-<p>##Loop Functions</p>
+<p><h2>Loop Functions</h2></p>
 
 <p>Unlike most other functional programming languages, RoyalScript has loops, a conditional loop and a for loop. These exist to add more flexibility in writing RoyalScript than purely using recursion as the primary tool of computation.</p>
 
-<p>###loop(bool_exp, call_exp)</p>
+<p><h3>loop(bool_exp, call_exp)</h3></p>
 
 <p>The <em>loop()</em> function in RoyalScript repeatedly calls a single statement while the boolean expression, also called a condition evaluates to true. The call expression, like that in <em>!@()</em> can be extended with the <em>do()</em> function.</p>
 
@@ -1027,7 +1027,7 @@ do(total)
 </code></pre>
 </div>
 
-<p>###for(list, function_proc)</p>
+<p><h3>for(list, function_proc)</h3></p>
 
 <p>The <em>for()</em> function in RoyalScript allows one to loop over lists, by calling some function or proc once on each item in the list.</p>
 
@@ -1064,11 +1064,11 @@ for(lst,
 </code></pre>
 </div>
 
-<p>##List Construction and Comprehension</p>
+<p><h2>List Construction and Comprehension</h2></p>
 
 <p>In previous examples, lists were constructed in a mutable fashion with loops or functions that had to be specified to filter and/or modify a list. In python, a popular object oriented programming language, it is possible to construct lists through the use of list comprehensions. RoyalScript implements a very similar concept through the <em>map()</em> and <em>filter()</em> functions, with even more powerful options if you chain them together.</p>
 
-<p>###map(list, function_proc)</p>
+<p><h3>map(list, function_proc)</h3></p>
 
 <p>The <em>map()</em> function takes a list and a function or proc(cannot use !@, must return value), and returns a new list that has every element in the old list applied to it. The old list that is called with map is not changed.</p>
 
@@ -1091,7 +1091,7 @@ for(lst,
 </code></pre>
 </div>
 
-<p>###filter(list, function_proc -&gt; Boolean)</p>
+<p><h3>filter(list, function_proc -&gt; Boolean)</h3></p>
 
 <p>The <em>filter()</em> function in RoyalScript takes a list and a function or proc that takes one argument and returns a boolean value. It goes through a list, and checks if eahc value returns true or false from the proc or function. It then returns a new list for all the values that made the function or proc return true.</p>
 
@@ -1120,11 +1120,11 @@ for(lst,
 </div>
 <p>This is a chain using the previous filter and mapping that list to a new list with all the elements in the previous list floor divided by 3.</p>
 
-<p>##Defining Functions</p>
+<p><h2>Defining Functions</h2></p>
 
 <p>RoyalScript allows you to define your own full size functions, which take any amount of parameters and have any amount of statements you want. RoyalScript also uses a special function, <em>return()</em>, which allows you to return nothing, one value, or multiple values in a list.</p>
 
-<p>###def(name, args_exp, call_exp…)</p>
+<p><h3>def(name, args_exp, call_exp…)</h3></p>
 
 <p>The <em>def()</em> function is the function which defines new named functions. Functions are much more flexible and powerful than procs, because they are named, they can have any amount of parameters, any amount of call expressions, and either return a value, or not, or have multiple return statements in different parts of the function, such as with control flow.</p>
 
@@ -1194,11 +1194,11 @@ for(lst,
 </code></pre>
 </div>
 
-<p>##Structs</p>
+<p><h2>Structs</h2></p>
 
 <p>Perhaps the most unique feature to RoyalScript are structs. Structs are groups of data fields that don’t have a specified type in each field, but are named. They are mutable, and can be passed around as references between functions. You create structs with the <em>new()</em> function. Every struct also has it’s own type callable with the <em>type()</em> function.</p>
 
-<p>###struct(name, field…)</p>
+<p><h3>struct(name, field…)</h3></p>
 
 <p>The <em>struct()</em> function defines a new struct that can be initialized. Each struct can have any amount of fields. You don’t have to initialize a struct with all it’s field called either. However, like the defined functions you cannot use a name that is already taken by a native RoyalScript function.</p>
 
@@ -1237,7 +1237,7 @@ do(
 </code></pre>
 </div>
 
-<p>###new(name, arg…)</p>
+<p><h3>new(name, arg…)</h3></p>
 
 <p>The <em>new()</em> function creates a new instance of a struct. You must use a previously defined struct, as RoyalScript does not support generic objects or keyed-value collections. Lists can accept a string as a key, but this behavior is not recommended or type/method safe.</p>
 
@@ -1256,7 +1256,7 @@ factory(5)
 </code></pre>
 </div>
 
-<p>###type(struct_instance)</p>
+<p><h3>type(struct_instance)</h3></p>
 
 <p>The <em>type()</em> function checks the type of some struct instantance, returning it as a string value.</p>
 
