@@ -1,20 +1,80 @@
 
-![RoyalScriptLogo](https://github.com/jweinst1/Royalscript/blob/gh-pages/images/crown-png-4.png)
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Royalscript by jweinst1</title>
+    <link rel="stylesheet" href="/Royalscript/assets/css/style.css?v=b5470bb69f3d4b5877b428d8e0615982aa816081">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/Royalscript/assets/js/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-##RoyalScript
+  </head>
+  <body>
 
-RoyalScript is a functional programming language with modern features and syntax. Sick of scheme lists? RoyalScript has pythonic lists and function calls. 
+      <header>
+        <h1>Royalscript</h1>
+        <p>A functional programming language designed for the web</p>
+      </header>
 
-What can you do with RoyalScript?
+      <div id="banner">
+        <span id="logo"></span>
 
-* Create mutable structs
-* Append, pop, push and more with lists
-* Use for loops and while loops
-* Use ranges like those from Python
-* List comprehensions with `map` and `filter`
-* Call functions from javascript
-* Run it right on the browser
-* Still use recursion!
+        <a href="https://github.com/jweinst1/Royalscript" class="button fork"><strong>View On GitHub</strong></a>
+        
+          <div class="downloads">
+            <span>Downloads:</span>
+            <ul>
+              <li><a href="https://github.com/jweinst1/Royalscript/zipball/gh-pages" class="button">ZIP</a></li>
+              <li><a href="https://github.com/jweinst1/Royalscript/tarball/gh-pages" class="button">TAR</a></li>
+            </ul>
+          </div>
+        
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        
+<p><img src="https://github.com/jweinst1/Royalscript/blob/gh-pages/images/crown-png-4.png" alt="RoyalScriptLogo" /></p>
+
+<p>##RoyalScript</p>
+
+<p>RoyalScript is a functional programming language with modern features and syntax. Sick of scheme lists? RoyalScript has pythonic lists and function calls.</p>
+
+<p>What can you do with RoyalScript?</p>
+
+<ul>
+  <li>Create mutable structs</li>
+  <li>Append, pop, push and more with lists</li>
+  <li>Use for loops and while loops</li>
+  <li>Use ranges like those from Python</li>
+  <li>List comprehensions with <code class="highlighter-rouge">map</code> and <code class="highlighter-rouge">filter</code></li>
+  <li>Call functions from javascript</li>
+  <li>Run it right on the browser</li>
+  <li>Still use recursion!</li>
+</ul>
+
+<p>Take a look at the guide, or try the in browser REPL, or the playground.</p>
 
 
-Take a look at the guide, or try the in browser REPL, or the playground.
+      </section>
+      <footer>
+        
+          <p>Project maintained by <a href="https://github.com/jweinst1">jweinst1</a></p>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    
+
+  </body>
+</html>
