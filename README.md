@@ -26,7 +26,7 @@ RoyalScript is a both a compiled or interpreted language, this depends on the ja
 To install RoyalScript, you can use npm by typing the command:
 
 ```
-$ npm install -g pike
+$ npm install -g royalscript
 ```
 RoyalScript, when run natively uses `.royal` files. To compile a RoyalScrpt file to javascript, use
 
