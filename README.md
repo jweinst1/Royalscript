@@ -15,9 +15,9 @@
 
 ##Intro
 
-RoyalScript is a functional programming language that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with javascript functions. You can call native javascript functions from RoyalScript as well!
+RoyalScript is a functional programming language that aims to combine the utility of popular functional programming languages with the mutable data structures found in object oriented languages. The language is also quickly compiled to compressed JavaScript, so it can be run in the browser, without having to download anything on your computer. Lastly, RoyalScript is also inter-operable with JavaScript functions. You can call native JavaScript functions from RoyalScript as well!
 
-RoyalScript is a both a compiled or interpreted language, this depends on the javascript environment that RoyalScript is run in.
+RoyalScript is a both a compiled or interpreted language, this depends on the JavaScript environment that RoyalScript is run in.
 
  
 
@@ -28,12 +28,12 @@ To install RoyalScript, you can use npm by typing the command:
 ```
 $ npm install -g royalscript
 ```
-RoyalScript, when run natively uses `.royal` files. To compile a RoyalScrpt file to javascript, use
+When run natively, RoyalScript uses `.royal` files. To compile a RoyalScrpt file to JavaScript, use
 
 ```
 royalscript -j path/to/royalscriptfile
 ```
-This will output the transcompiled, compressed javascript in your terminal. To compile and run a royalscript file, you can use
+This will output the transcompiled, compressed JavaScript in your terminal. To compile and run a royalscript file, you can use
 
 ```
 royalscript -e path/to/royalscriptfile
@@ -657,7 +657,7 @@ undefined
 [0,1,60,3,4,null,null,null,null,null,60]
 ```
 
-**warning**: To prevent unintended behavior, *set()*, and a few other functions in RoyalScript are considered non-nestable. This means since they aren't meant to evaluate to something, you cannot use them as arguments to other functions, such as:
+**Warning**: To prevent unintended behavior, *set()*, and a few other functions in RoyalScript are considered non-nestable. This means since they aren't meant to evaluate to something, you cannot use them as arguments to other functions, such as:
 
 ```
 >> str(set(e, 10, 60))
