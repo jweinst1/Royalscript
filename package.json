@@ -12,7 +12,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "RoyalScrpt": "Main.js"
+    "royalscript": "Main.js"
   },
   "keywords": [
     "functional",
@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/jweinst1/Royalscript/issues"
   },
-  "homepage": "https://github.com/jweinst1/Royalscript#readme"
+  "homepage": "https://github.com/jweinst1/Royalscript#readme",
+  "devDependencies": {
+    "@types/core-js": "^0.9.35"
+  }
 }
