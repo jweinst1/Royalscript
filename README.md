@@ -38,7 +38,7 @@ RoyalScript is a both a compiled or interpreted language, this depends on the Ja
 - [String Functions](#string-functions)
 - [List Functions](#list-functions)
 - [Conditional Functions](#conditional-functions)
-- [Procs(1 or 2 argument functions)](#procs-\(-1-or-2-argument-functions\))
+- Procs(1 or 2 argument functions)
 - [Loop Functions](#loop-functions)
 - [List Construction and Comprehension](#list-construction-and-comprehension)
 - [Defining Functions](#defining-functions)
