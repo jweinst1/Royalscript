@@ -38,7 +38,7 @@ RoyalScript is a both a compiled or interpreted language, this depends on the Ja
 - [String Functions](#string-functions)
 - [List Functions](#list-functions)
 - [Conditional Functions](#conditional-functions)
-- [Procs(1 or 2 argument functions)](#procs--1-or-2-argument-functions-)
+- [Procs(1 or 2 argument functions)](#procs-\(-1-or-2-argument-functions\))
 - [Loop Functions](#loop-functions)
 - [List Construction and Comprehension](#list-construction-and-comprehension)
 - [Defining Functions](#defining-functions)
@@ -1067,7 +1067,7 @@ This is a chain using the previous filter and mapping that list to a new list wi
 
 RoyalScript allows you to define your own full size functions, which take any amount of parameters and have any amount of statements you want. RoyalScript also uses a special function, `return()`, which allows you to return nothing, one value, or multiple values in a list.
 
-### `def(name, args\_exp, call\_exp...)`
+### `def(name, args_exp, call_exp...)`
 
 The `def()` function is the function which defines new named functions. Functions are much more flexible and powerful than procs, because they are named, they can have any amount of parameters, any amount of call expressions, and either return a value, or not, or have multiple return statements in different parts of the function, such as with control flow.
 
