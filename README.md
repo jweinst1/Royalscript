@@ -878,7 +878,7 @@ undefined
 
 ```
 
-## Procs(1 or 2 argument functions)
+## Procs (1 or 2 argument functions)
 
 RoyalScript has both general, full length functions that can be defined, but it also has smaller, anonymously created functions called Procs. They are similar to lambdas in other languages. 
 
